@@ -105,6 +105,7 @@ saveRDS(phsc_samples, file.path(args$out.dir, 'phsc_input_samples.rds'))
 
 dclus <- make.clusters(phsc_samples[! UNIT_ID %like% '\\+', ])
 filename=file.path(args$out.dir, 'potential_network', 'clusters.rds')
+create.dir(dirname(filename))
 sprintf("Saving %s\n", filename) %>% cat()
 saveRDS(dclus, filename)
 
