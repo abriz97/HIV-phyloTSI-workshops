@@ -54,17 +54,17 @@ make.clusters <- function(DT) {
     dclus[, CLU_SIZE:=.N, by='IDCLU']
     setkey(dclus, IDCLU)
 
-    if(args$include.twosample.individuals.only)
-    {
-        cat('Samples from same individual run in different clusters\n',
-            '\tCheck whether this done on purpose.\n')
-        dclus1 <- dclus[, list(
-            ID = paste0(ID, '+'),
-            IDCLU = IDCLU + max(IDCLU),
-            CLU_SIZE = CLU_SIZE
-        )]
-        dclus <- rbind(dclus, dclus1)
-    }
+    # if(args$include.twosample.individuals.only)
+    # {
+    #     cat('Samples from same individual run in different clusters\n',
+    #         '\tCheck whether this done on purpose.\n')
+    #     dclus1 <- dclus[, list(
+    #         ID = paste0(ID, '+'),
+    #         IDCLU = IDCLU + max(IDCLU),
+    #         CLU_SIZE = CLU_SIZE
+    #     )]
+    #     dclus <- rbind(dclus, dclus1)
+    # }
     dclus
 }
 
@@ -105,6 +105,7 @@ saveRDS(phsc_samples, file.path(args$out.dir, 'phsc_input_samples.rds'))
 
 dclus <- make.clusters(phsc_samples[! UNIT_ID %like% '\\+', ])
 filename=file.path(args$out.dir, 'potential_network', 'clusters.rds')
+sprintf("Saving %s\n", filename) %>% cat()
 saveRDS(dclus, filename)
 
 
@@ -117,6 +118,7 @@ setnames(dclus, 'ID', 'UNIT_ID')
 setkey(dclus, IDCLU)
 filename=file.path(args$out.dir,
                    paste0('phscinput_runs_clusize_', args$cluster_size,'_ncontrol_0.rds'))
+sprintf("Saving %s\n", filename) %>% cat()
 saveRDS(dclus, filename)
 
 qsub.next.step(file=args$controller,
