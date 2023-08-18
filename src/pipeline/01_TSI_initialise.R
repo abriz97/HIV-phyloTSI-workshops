@@ -37,6 +37,9 @@ option_list <- list(
   )
 )
 
+args <- parse_args(OptionParser(option_list = option_list))
+print(args)
+
 # Source functions
 source(file.path(args$pkg.dir, "utility.R"))
 
@@ -65,8 +68,6 @@ make.clusters <- function(DT) {
     dclus
 }
 
-args <- parse_args(OptionParser(option_list = option_list))
-print(args)
 
 
 usr <- Sys.info()[['user']]
