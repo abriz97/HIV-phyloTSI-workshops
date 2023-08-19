@@ -10,75 +10,76 @@ library(data.table)
 library(seqinr)
 library(tidyverse)
 library(dplyr)
+library(optparse)
 
 #
 # Define input arguments that can be changed by users
 #
 option_list <- list(
-  optparse::make_option(
+  make_option(
     c("-v", "--verbose"),
     action = "store_true",
     default = FALSE,
     help = "Print extra output [default]",
     dest = "verbose"
   ),
-  optparse::make_option(
+  make_option(
     "--seed",
     type = "integer",
     default = 42L,
     help = "Random number seed [default %default]",
     dest = "seed"
   ),
-  optparse::make_option(
+  make_option(
     "--save_data",
     action = "store_true",
     default = TRUE,
     help = "Save data [default]",
     dest = 'if_save_data'
   ),
-  optparse::make_option(
+  make_option(
     "--env_name",
     type = "character",
     default = 'phylor4',
     help = "Conda environment name [default]",
     dest = 'env_name'
   ),
-  optparse::make_option(
+  make_option(
     "--iqtree_method",
     type = "character",
     default = "GTR+F+R6",
     help = "Methods in IQTREE [default]",
     dest = 'iqtree_method'
   ),
-  optparse::make_option(
+  make_option(
     "--iqtree_root",
     type = "character",
     default = NULL,
     help = "Root in IQTREE [default]",
     dest = 'iqtree_root'
   ),
-  optparse::make_option(
+  make_option(
     "--pkg_dir",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to package directory, used as long we don t build an R package [default]",
     dest = 'prj.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--out_dir_base",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to base directory where all output is stored [default]",
     dest = 'out.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--prog_dir",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to base directory where phyloscanner is stored [default]",
     dest = 'prog.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--date",
     type = 'character',
     default = '2022-02-04',
@@ -86,7 +87,7 @@ option_list <- list(
     help = 'As of date to extract data from.  Defaults to today.',
     dest = 'date'
   ),
-  optparse::make_option(
+  make_option(
     "--walltime_idx",
     type = "integer",
     default = 2,
@@ -96,7 +97,7 @@ option_list <- list(
   
 )
 
-args <-  optparse::parse_args(optparse::OptionParser(option_list = option_list))
+args <-  parse_args(OptionParser(option_list = option_list))
 
 #
 # test

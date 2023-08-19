@@ -98,7 +98,7 @@ phsc_samples <- mapped_samples[, j={
     )
 }]
 
-saveRDS(phsc_samples, file.path(args$out.dir, 'phsc_input_samples.rds'))
+saveRDS(phsc_samples, file.path(args$out.dir, 'phsc_input_samples_with_bf.rds'))
 
 # Make clusters.rds
 # ______________________________

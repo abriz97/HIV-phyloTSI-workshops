@@ -335,10 +335,7 @@ dir.data <-  '/rds/general/project/ratmann_pangea_deepsequencedata/live/'
 dir.analyses <- '/rds/general/project/ratmann_deepseq_analyses/live'
 dir.net <- file.path(args$out.dir, "potential_network")
 
-ifelse(
-  !is.na(args$window_cutoff),
-  paste0('_n_control_', args$n_control), ''
-) -> tmp
+ifelse( !is.na(args$window_cutoff), paste0('_n_control_', args$n_control), '') -> tmp
 
 infile.runs <- file.path(
   args$out.dir,
