@@ -9,172 +9,173 @@ library(data.table)
 library(seqinr)
 library(tidyverse)
 library(dplyr)
-require(phyloscannerR)
+library(phyloscannerR)
+library(optparse)
 
 #
 # Define input arguments that can be changed by users
 #
 option_list <- list(
-  optparse::make_option(
+  make_option(
     c("-v", "--verbose"),
     action = "store_true",
     default = FALSE,
     help = "Print extra output [default]",
     dest = "verbose"
   ),
-  optparse::make_option(
+  make_option(
     "--seed",
     type = "integer",
     default = 42L,
     help = "Random number seed [default %default]",
     dest = "seed"
   ),
-  optparse::make_option(
+  make_option(
     "--save_data",
     action = "store_true",
     default = TRUE,
     help = "Save data [default]",
     dest = 'if_save_data'
   ),
-  optparse::make_option(
+  make_option(
     "--env_name",
     type = "character",
     default = 'phyloenv',
     help = "Conda environment name [default]",
     dest = 'env_name'
   ),
-  optparse::make_option( 
+  make_option( 
     "--blacklistReport", 
     action="store_true", 
     help="If present, output a CSV file of blacklisted tips from each tree.",
     dest = 'blacklist.report'
     ),
-  optparse::make_option(
+  make_option(
     "--distanceThreshold",
     action="store", 
     default = NULL,
     help = "Maximum distance threshold on a window for a relationship to be reconstructed between two hosts on that window.[default]",
     dest = 'distance.threshold'
   ),
-  # optparse::make_option(
+  # make_option(
   #   "--fileNameRegex", 
   #   action="store", 
   #   default="^(?:.*\\D)?([0-9]+)_to_([0-9]+).*$",
   #   help="Regular expression identifying window coordinates in tree file names. Two capture groups: start and end; if the latter is missing then the first group is a single numerical identifier for the window. If absent, input will be assumed to be from the phyloscanner pipeline.",
   #   dest = 'file.name.regex'
   #   ),
-  optparse::make_option(
+  make_option(
     "--maxReadsPerHost",
     action="store", 
     default = NULL,
     help = "If given, blacklist to downsample read counts (or tip counts if no read counts are identified) from each host to this number. [default]",
     dest = 'max.reads.per.host'
   ),
-  optparse::make_option(
+  make_option(
     "--minReadsPerHost",
     type = "integer",
     default = 1,
     help = "Blacklist hosts from trees where they have less than this number of reads. [default]",
     dest = 'min.reads.per.host'
   ),
-  optparse::make_option(
+  make_option(
     "--multinomial", 
     action="store_true", 
     help="Use the adjustment for missing and overlapping windows as described in Ratmann et al., Nature Communications, 2019.",
     dest='multinomial'
   ),
-  optparse::make_option( 
+  make_option( 
     "--normRefFileName",
     action="store", 
     default = NULL,
     help="Name of a file giving a normalisation constant for every genome position. Cannot be used simultaneously with -nc. ",
     dest = 'norm.ref.file.name'
   ),
-  optparse::make_option(
+  make_option(
     "--normStandardiseGagPol", 
     action="store_true", 
     help="An HIV-specific option: if true, the normalising constants are standardised so that the average on gag+pol equals 1. Otherwise they are standardised so the average on the whole genome equals 1.",
     dest = 'norm.standardise.gag.pol'
   ),
-  optparse::make_option(
+  make_option(
     "--noProgressBars", 
     action="store_true", 
     help="If --verbose, do not display progress bars",
     dest = 'no.progress.bars'
   ),
-  optparse::make_option( 
+  make_option( 
     "--outgroupName",
     action="store",
     default =NULL,
     help="The name of the tip in the phylogeny/phylogenies to be used as outgroup (if unspecified, trees will be assumed to be already rooted).",
     dest = 'outgroup.name'
   ),
-  optparse::make_option( 
+  make_option( 
     "--outputNexusTree",
     action="store_true",
     help="Standard output of annotated trees are in PDF format. If this option is present, output them as NEXUS instead.",
     dest = 'output.nexus.tree'
   ),
-  optparse::make_option(
+  make_option(
     "--postHocCountBlacklisting", 
     action="store_true", 
     help="Perform minimum read and tip based blacklisting as a separate step at the end of the analysis. (A legacy option).",
     dest = 'post.hoc.count.blacklisting'
   ),
-  optparse::make_option( 
+  make_option( 
     "--ratioBlacklistThreshold", 
     action="store", 
     default=0, 
     help="Used to specify a read count ratio (between 0 and 1) to be used as a threshold for blacklisting. --parsimonyBlacklistK and/or --duplicateBlacklist must also be used. If --parsimonyBlacklistK is used, a subgraph will be blacklisted if the ratio of its read count to the total read count from the same host (in that tree) is strictly less than this threshold.",
     dest = 'ratio.blacklist.threshold'
   ),
-  optparse::make_option(
+  make_option(
     "--relaxedAncestry", 
     action="store_true", 
     help="If absent, directionality can be inferred so long as at least one subraph from one host is descended from one from the other, and no pair of subgraphs exist in the opposite direction. Otherwise it is required that every subgraph from one host is descended from one from the other.",
     dest = "relaxed.ancestry"
   ),
-  optparse::make_option(
+  make_option(
     "--skipSummaryGraph", 
     action="store_true", 
     help="If present, do not output a simplified relationship graph",
     dest = 'skip.summary.graph'
   ),
-  optparse::make_option(
+  make_option(
     "--zeroLengthAdjustment",
     action="store_true",
     help="If present when allowMultiTrans is switched on, two hosts are classified as complex if their MRCAs are in the same multifurcation.",
     dest = 'zero.length.adjustment'
     ),
-  optparse::make_option(
+  make_option(
     "--pkg_dir",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to package directory, used as long we don t build an R package [default]",
     dest = 'pkg.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--prog_dir",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to the phyloscanner [default]",
     dest = 'prog.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--out_dir_base",
     type = "character",
     default = NA_character_,
     help = "Absolute file path to base directory where all output is stored [default]",
     dest = 'out.dir'
   ),
-  optparse::make_option(
+  make_option(
     "--controller",
     type = "character",
     default = NA_character_, 
     help = "Path to sh script irecting the full analysis",
     dest = 'controller'
   ),
-  optparse::make_option(
+  make_option(
     "--date",
     type = 'character',
     default = '2022-02-04',
@@ -184,7 +185,7 @@ option_list <- list(
   )
 )
 
-args <- optparse::parse_args(optparse::OptionParser(option_list = option_list))
+args <- parse_args(OptionParser(option_list = option_list))
 
 #
 # Helpers
