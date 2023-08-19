@@ -113,30 +113,6 @@ if(user == 'andrea')
     )
 }
 
-
-if(0)
-{
-    dsamples <- readRDS(phsc.samples)
-    dsamples[, pangea_id := gsub('RCCS_|MRCUVRI_', '', PANGEA_ID)]
-    tmp <- dsamples[, .(RENAME_ID, pangea_id)]
-    tmp <- merge(ddates, tmp, by='pangea_id')
-    tmp[, AID := gsub('-fq[0-9]','', RENAME_ID)]
-    setkey(tmp, AID, visit_dt)
-    # tmp[ RENAME_ID %like% 'fq2']
-    idx <- tmp[, .N,by=AID][N > 1, AID]
-    tmp <- tmp[AID %in% idx]
-    tmp[, FQ := gsub('^(.*)-fq', '', RENAME_ID) ]
-    tmp[, FQ := as.integer(FQ)]
-
-    setkey(tmp, AID, FQ)
-    tmp[, !is.unsorted(pangea_id), by='AID'][, mean(V1)]
-    # cases in which not increasing:
-    idx <- tmp[, all(FQ == cummax(FQ)),by='AID'][V1 == FALSE, AID]
-    tmp[AID %in% idx]
-
-    dsamples[, AID := gsub('-fq[0-9]','', RENAME_ID)]
-    dsamples[AID %in% idx]
-}
 ################
 # MAIN
 ################
