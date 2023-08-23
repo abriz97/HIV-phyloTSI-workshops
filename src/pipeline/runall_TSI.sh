@@ -43,7 +43,7 @@ out_dir_rel="$out_dir_base/TODO"
 controller="$software_path/runall_TSI.sh"
 inputsamples="$out_dir_base/phsc_input_samples_with_bf.rds"
 CLUSIZE='50'
-DATE='2022-04-25'
+DATE='2023-08-22'
 
 echo "Check that DATE, CLUSIZE, out_dir_rel and inputsamples are correctly specified"
 
