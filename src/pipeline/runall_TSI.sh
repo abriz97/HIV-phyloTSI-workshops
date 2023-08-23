@@ -113,21 +113,9 @@ case $STEP in
         --walltime_idx $RES
         ;;
 
-        ctr)
-        echo "----- check trees ----"
-        Rscript $software_path/04_check_trees.R \
-        --out_dir_base $out_dir_base \
-        --pkg_dir $software_path \
-        --iqtree_method "GTR+F+R6" \
-        --env_name "phylostan" \
-        --date $DATE \
-        --controller $controller \
-        --walltime_idx $RES
-        ;;
-
         atr)
         conda activate phylostan
-        Rscript $software_path/05_analyse_trees.R \
+        Rscript $software_path/04_analyse_trees.R \
         --out_dir_base $out_dir_base \
         --pkg_dir $software_path \
         --prog_dir $phyloscanner_path \
@@ -150,7 +138,7 @@ case $STEP in
 
         tsi)
         echo "----- Run HIV-TSI -----"
-        Rscript $software_path/06_TSI_run_predictions.R \
+        Rscript $software_path/05_TSI_run_predictions.R \
         --out_dir_base $out_dir_base \
         --pkg_dir $software_path \
         --relationship_dir $out_dir_rel \
@@ -163,7 +151,7 @@ case $STEP in
 
         dti)
         echo "----- get dates of infection -----"
-        Rscript $software_path/07_TSI_estimate_dates.R \
+        Rscript $software_path/06_TSI_estimate_dates.R \
         --out_dir_base $out_dir_base \
         --relationship_dir $out_dir_rel \
         --date $DATE \
