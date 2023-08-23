@@ -1,0 +1,24 @@
+# Intrahost diversity and recency of infections { background-color="`r clrs[1]`"}
+
+:::{ .notes}
+40 minutes, this should be about background and things mentioned by Tanya
+:::
+
+## Recency of infection { background-color="`r clrs_lt[1]`"}
+
+* *What?*   
+    Determining whether a person testing HIV positive has been infected recently or not.
+
+. . .
+
+* *Why ?* 
+    + incidence estimation
+    + study delays to diagnosis in subpopulations.
+
+. . .
+
+* *How ?*   
+    + RITA approach
+    + **intra-host HIV diversity**
+
+## { background-color="`r clrs_lt[1]`"}

@@ -1,0 +1,83 @@
+# HIV-PhyloTSI bioinformatics pipeline { background-color="`r clrs[2]`"}
+
+:::{ .notes}
+30 minutes, this should be about background and things mentioned by Tanya
+:::
+
+
+
+## Deep sequence alignment { background-color="`r clrs_lt[2]`"}
+
+require: BAM, ref_fasta
+program: mafft
+output: v2.fasta
+
+## Build trees { background-color="`r clrs_lt[2]`"}
+
+requires fasta files 
+program: IQtree
+output: .iqtree
+
+## analyse trees { background-color="`r clrs_lt[2]`"}
+
+requires: .iqtree
+program:   phyloscannerR
+
+## TSI estimation { background-color="`r clrs_lt[2]`"}
+
+requires: patstats and maf
+program: HIV phyloTSI
+
+## 
+
+
+```{mermaid}
+flowchart LR
+
+    subgraph PrimaryDataIndividuals
+        direction TB
+        I01[(*.bam)] 
+        I02[(*ref_fasta)] 
+    end
+
+    subgraph PrimaryDataBackground
+        I03[(*ref_seqs)] 
+    end
+
+    subgraph DeepSequenceAlignment
+        P1(mafft)
+        O1[(*.fasta)]
+    end
+
+    subgraph MakePhylogenies
+        direction TB
+        P2(IQTREE)
+        O2[( *.iqtree )]
+    end
+
+    subgraph "Summaries phylogenies"
+        direction TB
+        P3( PhyloscannerR ) 
+        O3[(PatStats.csv)]
+    end
+
+    subgraph "Obtain TSI estimates"
+        direction TB
+        P4( HIV-phyloTSI ) 
+        O4[(TSI.csv)]
+    end
+
+I02 --> P1
+I01 --> P1 
+I03 --> P1
+    P1 --> O1
+O1 --> P2 
+    P2 --> O2
+O2 --> P3 
+    P3 --> O3
+O3 --> P4 
+    P4 --> O4
+```
+
+
+## Predictions { background-color="`r clrs_lt[2]`"}
