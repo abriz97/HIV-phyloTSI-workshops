@@ -182,6 +182,13 @@ option_list <- list(
     metavar = '"YYYY-MM-DD"',
     help = 'As of date to extract data from.  Defaults to today.',
     dest = 'date'
+  ),
+  make_option(
+    c("--onlyTSI"),
+    action = "store_true",
+    default = FALSE,
+    help = "Only run phyloscanner for TSI purposes",
+    dest = "only.tsi"
   )
 )
 
@@ -209,11 +216,11 @@ args <- parse_args(OptionParser(option_list = option_list))
 #
 if(0){
   args <- list(
-    out.dir="/rds/general/project/ratmann_deepseq_analyses/live/seroconverters3_alignXX",
-    pkg.dir="/rds/general/user/ab1820/home/git/Phyloscanner.R.utilities/misc_data_analysis_RCCS1519/software",
+    out.dir="/rds/general/project/ratmann_deepseq_analyses/live/PANGEA2_KenyaWorkshop/",
+    pkg.dir="/rds/general/user/ab1820/home/git/HIV-phyloTSI-workshops/src/pipeline/",
     prog.dir="/rds/general/user/ab1820/home/git/phyloscanner",
-    norm.ref.file.name = "$DEEPDATA/normalisation_ByPosition.csv",
-    outgroup.name = "REF_CON_H",
+    norm.ref.file.name = "/rds/general/user/ab1820/home/git/phyloscanner/InfoAndInputs/HIV_DistanceNormalisationOverGenome.csv",
+    outgroup.name = "A1.UGANDA.2007.p191845.JX236671",
     ratio.blacklist.threshold=0.01,
     distance.threshold = "0.02 0.05",
     max.reads.per.host = 100,
@@ -223,9 +230,10 @@ if(0){
     post.hoc.count.blacklisting=TRUE  ,
     relaxed.ancestry = TRUE ,
     zero.length.adjustment=TRUE ,
-    date = '2022-07-23' ,
+    date = '2023-08-22' ,
     env_name="phylostan",
-    verbose=TRUE
+    verbose=TRUE,
+    only.tsi = TRUE
     # controller="/rds/general/user/ab1820/home/git/Phyloscanner.R.utilities/misc_data_analysis_RCCS1519/software/runall_TSI_seroconv3.sh"
   )
 }
@@ -250,8 +258,7 @@ args$date <- gsub('-','_',args$date)
 }
 args$out.dir.data <- .f('_phsc_input')
 args$out.dir.work <- .f('_phsc_work')
-args$out.dir.output <- .f('_phsc_output')
-
+args$out.dir.output <- .f('_phsc_output') 
 
 # Source functions
 source(file.path(args$pkg.dir, "utility.R"))
@@ -265,7 +272,8 @@ print(args)
 
 tmp <- setdiff(names(args),c('verbose','if_save_data','env_name','pkg.dir','prog.dir',
                              'out.dir','date','help','out.dir.data','out.dir.work', 'controller',
-                             'out.dir.output','norm.ref.file.name', 'pkg.dir', 'script'))
+                             'out.dir.output','norm.ref.file.name', 'pkg.dir', 'script',
+                             'only.tsi'))
 tmpv <- args[tmp]
 
 out.dir.analyse.trees <- file.path(args$out.dir, 
@@ -291,59 +299,64 @@ out.dir.analyse.trees <- gsub('_zero_length_adjustment','_zla',out.dir.analyse.t
 print(out.dir.analyse.trees)
 out.dir.analyse.trees.tsi <- gsub('phsc_phscrelationships_','phsc_phscTSI_',out.dir.analyse.trees)
 dir.create(out.dir.analyse.trees)
-dir.create(out.dir.analyse.trees.tsi)
-
+if( ! args$only.tsi){
+  dir.create(out.dir.analyse.trees.tsi)
+}
 
 #	Set phyloscanner variables	
 control	<- list()
 
-control$allow.mt <- TRUE
-control$alignment.file.directory = NULL 
-control$alignment.file.regex = NULL
-control$blacklist.report = args$blacklist.report
-control$blacklist.underrepresented = FALSE	
-control$count.reads.in.parsimony = TRUE
-control$distance.threshold <- args$distance.threshold
-control$do.dual.blacklisting = FALSE					
-control$duplicate.file.directory = NULL
-control$duplicate.file.regex = NULL
-control$file.name.regex = "^(?:.*\\D)?([0-9]+)_to_([0-9]+).*$"
-control$guess.multifurcation.threshold = FALSE
-control$max.reads.per.host <- args$max.reads.per.host
-control$min.reads.per.host <- args$min.reads.per.host
-control$min.tips.per.host <- 1	
-control$multifurcation.threshold = 1e-5
-control$multinomial= args$multinomial
-control$norm.constants = NULL
-control$norm.ref.file.name = args$norm.ref.file.name
-control$norm.standardise.gag.pol = args$norm.standardise.gag.pol
-control$no.progress.bars = args$no.progress.bars
-control$overwrite = TRUE
-control$outgroup.name = args$outgroup.name
-control$output.dir = out.dir.analyse.trees
-control$output.nexus.tree = args$output.nexus.tree
-control$outputRDA = TRUE
-control$parsimony.blacklist.k = 15
-control$prune.blacklist = FALSE
-control$post.hoc.count.blacklisting <- args$post.hoc.count.blacklisting
-control$ratio.blacklist.threshold = args$ratio.blacklist.threshold
-control$raw.blacklist.threshold = 3			
-control$recombination.file.directory = NULL
-control$recombination.file.regex = NULL
-control$relaxed.ancestry = args$relaxed.ancestry
-control$sankoff.k = 15
-control$sankoff.unassigned.switch.threshold = 0
-control$seed = args$seed
-control$skip.summary.graph = args$skip.summary.graph
-control$splits.rule = 's'
-control$tip.regex = '^(.*)-fq[0-9]+_read_([0-9]+)_count_([0-9]+)$'
-control$tree.file.regex = "^(.*)\\.treefile$" 
-control$tree.file.extension = '.treefile'
-control$use.ff = FALSE
-control$user.blacklist.directory = NULL 
-control$user.blacklist.file.regex = NULL
-control$verbosity = 1	
-control$zero.length.adjustment = args$zero.length.adjustment
+control <- list(
+  allow.mt = TRUE,
+  alignment.file.directory = NULL,
+  alignment.file.regex = NULL,
+  blacklist.report = args$blacklist.report,
+  blacklist.underrepresented = FALSE,
+  count.reads.in.parsimony = TRUE,
+  distance.threshold = args$distance.threshold,
+  do.dual.blacklisting = FALSE,
+  duplicate.file.directory = NULL,
+  duplicate.file.regex = NULL,
+  file.name.regex = "^(?:.*\\D)?([0-9]+)_to_([0-9]+).*$",
+  guess.multifurcation.threshold = FALSE,
+  max.reads.per.host = args$max.reads.per.host,
+  min.reads.per.host = args$min.reads.per.host,
+  min.tips.per.host = 1	,
+  multifurcation.threshold = 1e-5,
+  multinomial= args$multinomial,
+  norm.constants = NULL,
+  norm.ref.file.name = args$norm.ref.file.name,
+  norm.standardise.gag.pol = args$norm.standardise.gag.pol,
+  no.progress.bars = args$no.progress.bars,
+  overwrite = TRUE,
+  outgroup.name = args$outgroup.name,
+  output.dir = out.dir.analyse.trees,
+  output.nexus.tree = args$output.nexus.tree,
+  outputRDA = TRUE,
+  parsimony.blacklist.k = 15,
+  prune.blacklist = FALSE,
+  post.hoc.count.blacklisting = args$post.hoc.count.blacklisting,
+  ratio.blacklist.threshold = args$ratio.blacklist.threshold,
+  raw.blacklist.threshold = 3			,
+  recombination.file.directory = NULL,
+  recombination.file.regex = NULL,
+  relaxed.ancestry = args$relaxed.ancestry,
+  sankoff.k = 15,
+  sankoff.unassigned.switch.threshold = 0,
+  seed = args$seed,
+  skip.summary.graph = args$skip.summary.graph,
+  splits.rule = 's',
+  tip.regex = '^(.*)-fq[0-9]+_read_([0-9]+)_count_([0-9]+)$',
+  tree.file.regex = "^(.*)\\.treefile$" ,
+  tree.file.extension = '.treefile',
+  use.ff = FALSE,
+  user.blacklist.directory = NULL ,
+  user.blacklist.file.regex = NULL,
+  verbosity = 1	,
+  zero.length.adjustment = args$zero.length.adjustment
+)
+control <- control[!sapply(control, is.null)] 
+
 
 #
 #	Make sh scripts
@@ -380,6 +393,7 @@ hpc.walltime	<- 23
 hpc.q		<- NA
 hpc.mem		<- "36gb"
 hpc.array	<- nrow(djob)
+hpc.array <- fifelse(nrow(djob)==1,yes=NA_integer_, no=nrow(djob))
 
 pbshead <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select = hpc.select, 
                             hpc.nproc = hpc.nproc, hpc.mem = hpc.mem, 
@@ -395,11 +409,16 @@ pbshead <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select = hpc.select,
 {
   # job <- copy(djob)
   job <- copy(DT)
-  job[, CASE_ID := 1:.N ]
-  cmd <- job[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
-  cmd <- cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
-                           paste0(CASE, collapse = ''),
-                           'esac')]
+  
+  if(nrow(job == 1)){
+    cmd <- job$CMD
+  }else{
+    job[, CASE_ID := 1:.N ]
+    cmd <- job[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
+    cmd <- cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
+                             paste0(CASE, collapse = ''),
+                             'esac')]
+  }
   cmd <- paste(pbshead, cmd, sep = '\n')
   
   # submit
@@ -409,8 +428,10 @@ pbshead <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select = hpc.select,
 }
 
 # submit for both type of PHSC analyses + store ids
-ids <- .f(djob, pref='phsc_pairs')
-ids <- c(ids, .f(djob1, pref='phsc_tsi'))
+ids <- .f(djob, pref='phsc_tsi')
+if(! args$only.tsi){
+  ids <- c(ids, .f(djob1, pref='phsc_pairs'))
+}
 
 # qsub next step in the analysis: time since infection estimation
 qsub.next.step(file=args$controller,
