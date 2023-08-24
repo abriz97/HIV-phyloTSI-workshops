@@ -197,7 +197,7 @@ write.allmafs.from.samples.with.bf <- function(path.samples.with.bf,
 
     # Apply to every file and combine
     idx <- idx[file.exists(file.path(bf.prefix, BF)), ]
-    idx[, BF := file.path(prefix, BF)]
+    idx[, BF := file.path(bf.prefix, BF)]
     maf_all <- lapply(idx$BF, .get.minor.allele.freqs)
     maf_all <- Reduce('rbind', maf_all)
     maf_all <- as.data.table(maf_all)

@@ -10,7 +10,7 @@
 if [[ "$1" == "-h" || "$1" == "-help" || "$1" == "--help" ]]; then
     echo "Usage: qsub STEP=step RES=res runall_TSI.sh"
     echo "OPTIONs:"
-    echo "    STEP : one of net, ali, btr, ctr, atr, tsi, dti "
+    echo "    STEP : one of net, ali, btr, atr, tsi, dti "
     echo "    RES: determines resources fr pbs jobs (0 to 3)  [default: 0]"
     exit 0
 fi
@@ -38,7 +38,7 @@ hivtsipath="$HOME/git/HIV-phyloTSI"
 
 # analysis specific paths & args
 out_dir_base="$DEEPANALYSES/PANGEA2_KenyaWorkshop"
-out_dir_rel="$out_dir_base/TODO"
+out_dir_rel="$out_dir_base/2023_08_22_phsc_phscTSI_sd_42_sdt_002_005_dsl_100_mr_30_mlt_T_npb_T_og_A1UGANDA2007p191845JX236671_phcb_T_rtt_001_rla_T_zla_T"
 
 controller="$software_path/runall_TSI.sh"
 inputsamples="$out_dir_base/phsc_input_samples_with_bf.rds"
@@ -127,12 +127,12 @@ case $STEP in
         --maxReadsPerHost 100 \
         --multinomial \
         --noProgressBars \
-        --postHoccountBlacklisting \
+        --postHocCountBlacklisting \
         --relaxedAncestry \
-        --zerolengthAdjustment \
+        --zeroLengthAdjustment \
         --date $DATE \
         --controller $controller \
-        --env_name "phyloscanner" \
+        --env_name "phylostan" \
         --verbose TRUE
         ;;
 
@@ -146,7 +146,7 @@ case $STEP in
         --date $DATE \
         --env_name 'hivphylotsi' \
         --controller $controller \
-        --input_samples $input_samples
+        --input_samples $inputsamples
         ;;
 
         dti)
@@ -155,7 +155,7 @@ case $STEP in
         --out_dir_base $out_dir_base \
         --relationship_dir $out_dir_rel \
         --date $DATE \
-        --input_samples $input_samples \
+        --input_samples $inputsamples \
         --controller $controller
         ;;
 
