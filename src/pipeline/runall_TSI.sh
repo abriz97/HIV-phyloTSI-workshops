@@ -10,7 +10,7 @@
 if [[ "$1" == "-h" || "$1" == "-help" || "$1" == "--help" ]]; then
     echo "Usage: qsub STEP=step RES=res runall_TSI.sh"
     echo "OPTIONs:"
-    echo "    STEP : one of net, ali, btr, ctr, atr, tsi, dti "
+    echo "    STEP : one of net, ali, btr, atr, tsi, dti "
     echo "    RES: determines resources fr pbs jobs (0 to 3)  [default: 0]"
     exit 0
 fi
