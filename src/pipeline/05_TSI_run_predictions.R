@@ -406,7 +406,10 @@ if(! file.exists(path.all.maf) )
 dfiles[, IDX := 1:.N, ]
 dfiles[, CMD := paste0(IDX, ')\n',CMD, ';;\n')]
 cmd <- paste0(dfiles$CMD, collapse='\n')
-cmd <- paste0('case $PBS_ARRAY_INDEX in\n', cmd, 'esac\n')
+hpc_array <- fifelse(nrow(dfiles)==1,yes=NA_integer_, no=nrow(djob))
+if(!is.na(hpc_array)){
+    cmd <- paste0('case $PBS_ARRAY_INDEX in\n', cmd, 'esac\n')
+}
 
 header <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select=1, 
                                       hpc.walltime=args$walltime,
@@ -414,7 +417,7 @@ header <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select=1,
                                       hpc.nproc=1, 
                                       hpc.q=NA, 
                                       hpc.load=paste0('module load anaconda3/personal\nsource activate ', args$env_name, '\n'),
-                                      hpc.array=nrow(dfiles))
+                                      hpc.array=hpc_array)
 
 # Patch together and write 
 cmd <- paste0(header, cmd, sep='\n')

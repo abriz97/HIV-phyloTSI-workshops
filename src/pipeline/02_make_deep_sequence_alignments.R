@@ -267,6 +267,8 @@ if( is.na(args$sliding_width) ) stop('No sliding_width provided')
 
 .write.job <- function(DT)
 {
+    hpc_array <- max(DT$CASE_ID)
+    if(hpc_array <= 1)  hpc_array <- NA
   # Define PBS header for job scheduler
   pbshead <- cmd.hpcwrapper.cx1.ic.ac.uk(
     hpc.select = hpc.select,
@@ -274,17 +276,28 @@ if( is.na(args$sliding_width) ) stop('No sliding_width provided')
     hpc.walltime = hpc.walltime,
     hpc.q = hpc.q,
     hpc.mem = hpc.mem,
-    hpc.array = DT[, max(CASE_ID)],
+    hpc.array = hpc_array,
     hpc.load = "module load intel-suite/2015.1 mpi raxml/8.2.9 mafft/7 anaconda/2.3.0 samtools"
   )
   
-  cmd <- DT[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
-  cmd <-    cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
+
+  if(is.na(hpc_array)){
+    cmd <- DT$CMD
+  }else{
+    cmd <- DT[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
+    cmd <-    cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
                          paste0(CASE, collapse = ''),
                          'esac')]
+
+    cmd <- job[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
+    cmd <- cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
+                             paste0(CASE, collapse = ''),
+                             'esac')]
+  }
   cmd <- paste(pbshead, cmd, sep = '\n')
   cmd
 }
+
 
 #
 # test
