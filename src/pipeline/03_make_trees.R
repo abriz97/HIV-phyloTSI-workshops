@@ -158,19 +158,26 @@ args <-  parse_args(OptionParser(option_list = option_list))
 
 .write.job <- function(DT)
 {
+    hpc_array <- max(DT$CASE_ID)
+    if(hpc_array <= 1)  hpc_array <- NA
   # Define PBS header for job scheduler
   pbshead <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select=hpc.select, 
                               hpc.nproc=hpc.nproc, hpc.mem=hpc.mem, 
                               hpc.walltime=hpc.walltime,
                               hpc.q=hpc.q,  
-                              hpc.array = max(DT$CASE_ID), 
+                              hpc.array = hpc_array, 
                               hpc.load=paste0('\n module load anaconda3/personal \n source activate ',args$env_name)
                               )
   
-  cmd <- DT[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
-  cmd <-    cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
-                         paste0(CASE, collapse = ''),
-                         'esac')]
+  if(is.na(hpc_array)){
+    cmd <- DT$CMD
+  }else{
+    job[, CASE_ID := 1:.N ]
+    cmd <- job[, list(CASE = paste0(CASE_ID, ')\n', CMD, ';;\n')), by = 'CASE_ID']
+    cmd <- cmd[, paste0('case $PBS_ARRAY_INDEX in\n',
+                             paste0(CASE, collapse = ''),
+                             'esac')]
+  }
   cmd <- paste(pbshead, cmd, sep = '\n')
   cmd
 }

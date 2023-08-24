@@ -94,7 +94,7 @@ phsc_samples <- mapped_samples[, j={
         UNIT_ID = pangea_id,
         RENAME_ID = paste0(pangea_id, '-fq1'),
         SAMPLE_ID = file.path('PANGEA2_KenyaWorkshop/shiver_output',sequence_id),
-        BF = file.path("PANGEA2_KenyaWorkshop/shiver_output", paste0(sequence_id,"_BaseFreq_WithHXB2.csv" ))
+        BF = file.path("PANGEA2_KenyaWorkshop/shiver_output", paste0(sequence_id,"_BaseFreqs_WithHXB2.csv" ))
     )
 }]
 

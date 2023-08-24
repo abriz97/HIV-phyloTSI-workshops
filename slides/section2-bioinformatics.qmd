@@ -1,10 +1,37 @@
 # HIV-PhyloTSI bioinformatics pipeline { background-color="`r clrs[2]`"}
 
 :::{ .notes}
-30 minutes, this should be about background and things mentioned by Tanya
+30 minutes, talk about the pipeline. 
+Break it in four parts.
 :::
 
+## Demistifying the process { background-color="`r clrs_lt[2]`"}
 
+:::{ .notes }
+objective is to describe and demistify the bioinformatics pipeline.
+    - process of obtaining tsi estimates from blood samples of HIV positive individuals.
+    - the pipeline is an essential part of the process, but we 1. no time and 2. implementation is technical and out-of-scope.
+:::
+
+```{mermaid}
+flowchart LR 
+START[(HIV+ blood sample)]
+M1[???]
+M2[???]
+M3[???]
+END[(TSI estimates)]
+
+START --> M1 --> M2 --> M3 --> END
+```
+
+- In this section, want to **describe** processes and **data manipulation** carried out by the pipeline.
+- **Not** the **actual implementation** of the pipeline.
+
+Main steps: 
+
+- Next Generation Sequencing (NGS)
+- build phylogenies     [**MANY!** (one every 250 bp window)]{.fragment}
+- analyse phylogenies   
 
 ## Deep sequence alignment { background-color="`r clrs_lt[2]`"}
 
