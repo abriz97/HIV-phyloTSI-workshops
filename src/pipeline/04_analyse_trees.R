@@ -298,9 +298,9 @@ out.dir.analyse.trees <- gsub('_zero_length_adjustment','_zla',out.dir.analyse.t
 
 print(out.dir.analyse.trees)
 out.dir.analyse.trees.tsi <- gsub('phsc_phscrelationships_','phsc_phscTSI_',out.dir.analyse.trees)
-dir.create(out.dir.analyse.trees)
+dir.create(out.dir.analyse.trees.tsi)
 if( ! args$only.tsi){
-  dir.create(out.dir.analyse.trees.tsi)
+  dir.create(out.dir.analyse.trees)
 }
 
 #	Set phyloscanner variables	
