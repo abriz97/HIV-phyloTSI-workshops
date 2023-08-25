@@ -406,7 +406,7 @@ if(! file.exists(path.all.maf) )
 dfiles[, IDX := 1:.N, ]
 dfiles[, CMD := paste0(IDX, ')\n',CMD, ';;\n')]
 cmd <- paste0(dfiles$CMD, collapse='\n')
-hpc_array <- fifelse(nrow(dfiles)==1,yes=NA_integer_, no=nrow(djob))
+hpc_array <- fifelse(nrow(dfiles)==1,yes=NA_integer_, no=nrow(dfiles))
 if(!is.na(hpc_array)){
     cmd <- paste0('case $PBS_ARRAY_INDEX in\n', cmd, 'esac\n')
 }
