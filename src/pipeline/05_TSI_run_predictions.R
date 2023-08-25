@@ -404,12 +404,12 @@ if(! file.exists(path.all.maf) )
 ##################################
 
 dfiles[, IDX := 1:.N, ]
-dfiles[, CMD := paste0(IDX, ')\n',CMD, ';;\n')]
-cmd <- paste0(dfiles$CMD, collapse='\n')
 hpc_array <- fifelse(nrow(dfiles)==1,yes=NA_integer_, no=nrow(dfiles))
 if(!is.na(hpc_array)){
+    dfiles[, CMD := paste0(IDX, ')\n',CMD, ';;\n')]
     cmd <- paste0('case $PBS_ARRAY_INDEX in\n', cmd, 'esac\n')
 }
+cmd <- paste0(dfiles$CMD, collapse='\n')
 
 header <- cmd.hpcwrapper.cx1.ic.ac.uk(hpc.select=1, 
                                       hpc.walltime=args$walltime,
