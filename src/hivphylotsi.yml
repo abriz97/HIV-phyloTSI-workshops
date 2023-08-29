@@ -1,0 +1,37 @@
+name: hivphylotsi
+channels:
+  - defaults
+dependencies:
+  - blas
+  - ca-certificates
+  - certifi
+  - intel-openmp
+  - joblib
+  - libcxx
+  - libffi
+  - libgfortran
+  - llvm-openmp
+  - mkl
+  - mkl-service
+  - mkl_fft
+  - mkl_random
+  - ncurses
+  - numpy
+  - numpy-base
+  - openssl
+  - pandas=0.25.3
+  - pip
+  - python=3.6.13
+  - python-dateutil
+  - pytz
+  - readline
+  - scikit-learn=0.22
+  - scipy
+  - setuptools
+  - six
+  - sqlite
+  - tk
+  - wheel
+  - xz
+  - zlib
+
