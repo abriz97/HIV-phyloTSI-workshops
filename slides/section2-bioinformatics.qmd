@@ -15,7 +15,7 @@ objective is to describe and demistify the bioinformatics pipeline.
 
 ```{mermaid}
 flowchart LR 
-START[(HIV+ blood sample)]
+START[(HIV+ blood samples)]
 M1[???]
 M2[???]
 M3[???]
@@ -25,77 +25,172 @@ START --> M1 --> M2 --> M3 --> END
 ```
 
 - In this section, want to **describe** processes and **data manipulation** carried out by the pipeline.
-- **Not** the **actual implementation** of the pipeline.
+- **Not** the actual **implementation** of the pipeline.
 
 Main steps: 
 
 - Next Generation Sequencing (NGS)
-- build phylogenies     [**MANY!** (one every 250 bp window)]{.fragment}
+- constructing phylogenies     [**MANY!**]{.fragment}
 - analyse phylogenies   
 
-## Deep sequence alignment { background-color="`r clrs_lt[2]`"}
 
-require: BAM, ref_fasta
-program: mafft
-output: v2.fasta
+## Next Generation Sequencing { background-color="`r clrs_lt[2]`"}
 
-## Build trees { background-color="`r clrs_lt[2]`"}
+::: {.notes}
+NGS is the fundamental technology to capture and measure within-host diversity.
+It allows to sequence multiple viral strains from the same infected individuals,
+aligning them to the same reference sequence. As compared to the traditional Sanger
+sequencer, it allows to identify mutations, provide estimates of viral load and 
+opens new doors.
+-> fast, high-throughput, cost efficient
+:::
 
-requires fasta files 
-program: IQtree
-output: .iqtree
+- simultaneous sequencing of multiple viral particles to capture within-host diversity
+- PANGEA protocols: Gall (TOCITE) and Bonsall et al.[@bonsall_comprehensive_2018]
+- TSI pipeline starts with the outputs produced by `shiver` [@wymant_easy_2018]: `*.bam`, `*.ref.fasta`
 
-## analyse trees { background-color="`r clrs_lt[2]`"}
+![](figures/shiver.png){fig-align=center}
 
-requires: .iqtree
-program:   phyloscannerR
+## Grouping & multiple sequence alignment { background-color="`r clrs_lt[2]`"}
 
-## TSI estimation { background-color="`r clrs_lt[2]`"}
+::: {.notes}
+If there are multiple sequences per host, and there are many hosts for which we 
+want predictions, the total number of sequences to consider increases very fast.
+Further, inferring tree structures becomes harder with the length of the sequences,
+and therefore we typically break the genome in chunks which are  ~250 bp long.
+To avoid working with too many parts, we group individuals (or hosts) in groups 
+of size 50, and aim to build ony phylogeny per group, per 250 bp long genetic 
+window.
+Building trees requires that we are able to map chunks of one virus' genome to 
+another virus' genome (ie. comparing apple to apples.)
+Additionally, a set of "reference sequences" is used to make sure that alignments
+are "similar" across different groups of people.
+plot is too small right now
+:::
 
-requires: patstats and maf
-program: HIV phyloTSI
+- Many sequences, many hosts, many genome windows [-> **group by host!**]{.fragment} 
+- aligning to compare "apples to apples": MAFFT TOCITE
 
-## 
+![](figures/deepseqalign_workshop.png){.fragment fig-align=center}
 
+## Inferring phylogenies { background-color="`r clrs_lt[2]`"}
+
+::: {.notes}
+Now that we obtained the alignments for every group of hosts and genome window,
+we can produce phylogenetic trees describing the evolutionary dependencies 
+within- and between- hosts. This is done through IQTREE 
+:::
+
+- Phylogenies are made through IQTREE by group and window through IQTREE (TOCITE)
+
+![](figures/ptyr1_InWindow_9075_to_9324_v2.treefile.png){fig-align=center}
+
+## Analysing phylogenies { background-color="`r clrs_lt[2]`"}
+
+::: {.notes}
+Once the trees are made, we need to programmatically study them and summarise
+them. We have seen in the previous section how features such as Longest Root to
+Tip distance are associated with time since infection and we would like to 
+measure this along the entire genome.
+This is where `phyloscanner` comes into play. This is a tool which was principally
+developed to answers questions such as 'whom infected whom', but which produces
+a lot of useful summary information.
+These are included in the patient statistics file: `patStats`, which will be 
+the input the HIV-phyloTSI algorithm later on.
+FIGURE: 5 small treefiles with a } bracket pointing to csv file
+:::
+
+- `phyloscanner` (TOCITE) summarizes each tree through summary statistics:
+- `patStats.csv`: contains LRTT, number of tips, etc...
+
+
+## Minor Allele Frequencies { background-color="`r clrs_lt[2]`"}
+
+:::{.notes}
+We almost have all the ingredients to cook Tanyas' recipe: we are only missing 
+Minor Allele Frequencies, which are a measure on the number of mutations that 
+have appeared over time. Specifically, these are computed as the fraction of 
+non-majority bases over all reads observeed at that position.
+Note that these measures are completely independent of the grouping/alignment 
+procedures discussed previously, and can be independently obtained for each 
+individuals sequence
+:::
+
+- $\text{MAF} = ( 1 - \text{proportion of majority bases}) / \text{depth}$
+- Evaluated at first 2 codos positions (`MAF12c`) and/or third codon position (`MAF3c`)
+
+![](figures/maf.png){fig-align=center}
+
+
+## HIV-phyloTSI { background-color="`r clrs_lt[2]`"}
+
+::: {.notes}
+Now that we have summarised the phylogenetic trees and evaluated diversity of the 
+different reads, we have all the ingredients that are necessary to run HIV-phyloTSI.
+This is the section we specifically focus on during the practical. 
+:::
+
+- Focus of the practical session
+- takes as input features of phylogenies and MAFs.
+- returns a `csv` file with TSI estimates and some uncertainty range.
+
+## Summary { background-color="`r clrs_lt[2]`"}
+
+::: {.notes}
+So, to summarise, the differet steps are run according to this scheme.
+:::
 
 ```{mermaid}
-flowchart LR
+graph LR
 
-    subgraph PrimaryDataIndividuals
+    subgraph S1["Primary Data Patients"]
         direction TB
         I01[(*.bam)] 
         I02[(*ref_fasta)] 
+        I02b[(*BaseFreqs_WithHXB2.csv)]
     end
 
-    subgraph PrimaryDataBackground
-        I03[(*ref_seqs)] 
+    subgraph S2["Reference Sequences"]
+        I03[(*.fasta)] 
     end
 
-    subgraph DeepSequenceAlignment
+    subgraph S3["Multiple Sequence Alignment"]
         P1(mafft)
         O1[(*.fasta)]
     end
 
-    subgraph MakePhylogenies
+    subgraph S4["Constructing Phylogenies"]
         direction TB
         P2(IQTREE)
         O2[( *.iqtree )]
     end
-
-    subgraph "Summaries phylogenies"
-        direction TB
-        P3( PhyloscannerR ) 
-        O3[(PatStats.csv)]
+    
+    subgraph S2b["Computing MAFs"]
+      direction TB
+      P2b(script)
+      O2b[(maf.csv)]
     end
 
-    subgraph "Obtain TSI estimates"
+    subgraph S5["Analysing phylogenies"]
+        direction TB
+        P3( PhyloscannerR ) 
+        O3[(*PatStats.csv)]
+    end
+
+    subgraph S6["Obtain TSI estimates"]
         direction TB
         P4( HIV-phyloTSI ) 
         O4[(TSI.csv)]
     end
+    
+    classDef Red fill:#F84E68
+    class S3,S4 Red
+    classDef Orange fill:orange
+    class S5,S6 Orange
 
 I02 --> P1
 I01 --> P1 
+I02b --> P2b --> O2b --> P4
 I03 --> P1
     P1 --> O1
 O1 --> P2 
@@ -106,5 +201,15 @@ O3 --> P4
     P4 --> O4
 ```
 
+Red: run by group and window.
+Orange: run by group.
 
-## Predictions { background-color="`r clrs_lt[2]`"}
+## But what is HIV-phyloTSI doing? { background-color="`r clrs_lt[2]`"}
+
+::: {.notes}
+random forest algorithm: little intuition
+Good thing is we do not need to understand the little details as long as we use 
+the code provided.
+:::
+
+- **ML algorithm**, in particular Random Forest.

@@ -2,8 +2,10 @@
 title: "HIV-phyloTSI: IAVI workshop"
 author: "Andrea Brizzi"
 date: 2023-11-12
+bibliography: references.bib
 format:
     revealjs:
+        fig-align: "center"
         slide-number: true
         theme: ["default","custom.scss"]
         incremental: true
@@ -45,4 +47,9 @@ which color is this
 :::
 
 ## And this? { background-color="`r clrs_lt[4]`"}
+
+# References
+
+::: {#refs}
+::: 
 
