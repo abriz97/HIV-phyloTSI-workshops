@@ -1,11 +1,11 @@
 # HIV-phyloTSI-workshops
-Materials for HIV-phyloTSI training workshops in Kigali and Gaborone.
+Materials for HIV-phyloTSI training workshops in Nairobi and Gaborone.
 
 The repository is structured as follows:
 - *input*
 - *output*
 - *scripts*
-- *Kigali* 
+- *Nairobi* 
 - *Gaborone*
 
 
