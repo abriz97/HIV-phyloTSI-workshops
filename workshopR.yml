@@ -1,0 +1,8 @@
+name: workshopR
+channels:
+  - defaults
+dependencies:
+  - r-base=4.2.0
+  - r-here
+  - r-ggplot2
+  - r-data.table

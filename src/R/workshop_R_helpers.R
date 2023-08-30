@@ -222,3 +222,14 @@ plot_cross_interval_tsisero <- function(DT=da, sqroot=FALSE){
         labs(x=.labs[1], y=.labs[2])
 }
 
+plot_histogram_tsi <- function(DT){
+    p <- ggplot(dall, aes(x=RF_pred_linear, fill=host.id)) +
+        geom_histogram() +
+        scale_color_manual(values=palette_hostid, na.value = 'grey50') +
+        scale_fill_manual(values=palette_hostid, na.value = 'grey50') +
+        scale_y_continuous(expand = expansion(mult=c(0,0.2)) ) +
+        theme_bw() +
+        theme(legend.position='none') +
+        labs( x="Estimated TSIs", y="Count", title="Shortest predictions are from seroconverters")
+    return(p)
+}
