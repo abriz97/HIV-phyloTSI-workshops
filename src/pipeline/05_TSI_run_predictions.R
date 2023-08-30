@@ -86,6 +86,19 @@ args <-  parse_args(OptionParser(option_list = option_list))
 # helper f's
 ###############
 
+fix.noninteger.xcoord <- function(patstats=dfiles$pat.path){
+
+    .fix.one <- function(path){
+        ps <- fread(path)
+        if(any((ps$xcoord %% 1) != 0)){
+                ps[, xcoord:=ceiling(xcoord)]
+                write.csv(ps, path)
+        }
+        return(TRUE)
+    }
+    sapply(patstats, .fix.one)
+}
+
 .unzip.patstats <- function(x)
 {
         csv.name <- unzip(x, list = TRUE)$Name
@@ -372,32 +385,29 @@ phsc_inputs <- file.path(args$out.dir.output,
                          paste0('ptyr', tmp, '_input.csv' ))
 
 
-if(! file.exists(path.all.maf) )
-{
-    dfiles <- data.table(pty=as.integer(tmp), 
-                         zip.path=patstats_zipped, 
-                         phi.path=phsc_inputs)
-    setkey(dfiles, pty)
-    dfiles <- dfiles[ file.exists(zip.path) & file.exists(phi.path)]
-    dfiles[, pat.path:=.unzip.patstats(zip.path), by='pty']
-    dfiles[, maf.path:=gsub('patStats.csv$','maf.csv',pat.path)]
-    dfiles[, tsi.path:=gsub('patStats.csv$','tsi.csv',pat.path)]
-    dfiles[, CMD:=NA_character_]
+# if(! file.exists(path.all.maf) )
+# {
+#     dfiles <- data.table(pty=as.integer(tmp), 
+#                          zip.path=patstats_zipped, 
+#                          phi.path=phsc_inputs)
+#     setkey(dfiles, pty)
+#     dfiles <- dfiles[ file.exists(zip.path) & file.exists(phi.path)]
+#     dfiles[, pat.path:=.unzip.patstats(zip.path), by='pty']
+#     dfiles[, maf.path:=gsub('patStats.csv$','maf.csv',pat.path)]
+#     dfiles[, tsi.path:=gsub('patStats.csv$','tsi.csv',pat.path)]
+#     dfiles[, CMD:=NA_character_]
+# 
+#     lapply(dfiles$pty, write.mafs.and.cmds)
+# 
 
-    lapply(dfiles$pty, write.mafs.and.cmds)
-
-}else{
-
-    dfiles <- data.table(pty=as.integer(tmp), 
-                         zip.path=patstats_zipped)
-    setkey(dfiles, pty)
-    dfiles <- dfiles[ file.exists(zip.path)]
-    dfiles[, pat.path:=.unzip.patstats(zip.path), by='pty']
-    dfiles[, tsi.path:=gsub('patStats.csv$','tsi.csv',pat.path)]
-    dfiles <- dfiles[!file.exists(tsi.path)]
-                         
-    lapply(dfiles$pty, write.cmds, maf.path=path.all.maf)
-}
+dfiles <- data.table(pty=as.integer(tmp), zip.path=patstats_zipped)
+setkey(dfiles, pty)
+dfiles <- dfiles[ file.exists(zip.path)]
+dfiles[, pat.path:=.unzip.patstats(zip.path), by='pty']
+dfiles[, tsi.path:=gsub('patStats.csv$','tsi.csv',pat.path)]
+dfiles <- dfiles[!file.exists(tsi.path)]
+fix.noninteger.xcoord(dfiles$patstats) 
+lapply(dfiles$pty, write.cmds, maf.path=path.all.maf)
 
 ##################################
 # submit jobs 
