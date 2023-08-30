@@ -1,0 +1,154 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+# HIV-PhyloTSI obtaining TSI estimates {background-color="`r clrs[3]`"}
+
+::: notes
+40 minutes, groups of 4
+:::
+
+## Plan {background-color="`r clrs_lt[3]`"}
+
+-   divide in group of 4, each goup with a machine running Linux or
+    MacOS
+-   introduction of sample dataset
+-   installing dependencies
+-   running hiv-phyloTSI
+-   if there is time, visualising outputs in R. 
+
+## Preliminary Tools {background-color="`r clrs_lt[3]`"}
+
+::: {.notes}
+-> open Terminal macOS : 
+Click the Launchpad icon  in the Dock, type Terminal in the search field, then click Terminal.
+-> Linux:
+Typical shortcut: Ctrl+Alt+T
+:::
+
+There are two tools that will make our lives easier:
+
+- **Terminal access** allows to run programs and give instructions to computer. <\br>
+(`Ctrl+Alt+T` on Linux, `Terminal` on MacOS, see [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) for Windows ).
+- **Conda** allows to download the exact requirements needed for HIV-phyloTSI.
+  Installation instructions can be found [here](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+
+
+## Installing dependencies {.smaller background-color="`r clrs_lt[3]`"}
+
+The 'ingredients' to run the analyses are: the **ML algorithm**; the
+**data** and the **code dependencies**. The below code chunk allows you
+to download everything that is needed for the analyses.
+
+```{bash}
+#| eval: false
+#| echo: true
+
+# change directory to where you want to install HIV-phyloTSI repo
+cd $HOME/git            # this is where I install git packages 
+# cd $HOME && mkdir git && cd git
+
+# clone directories necessary to run the analysis
+# BDIs code and workshop materials
+git clone git@github.com/BDI-pathogens/HIV-phyloTSI.git
+git clone git@github.com/abriz97/HIV-phyloTSI-workshops.git
+# store paths to 2 above directories
+DIR_WORKSHOP="$(pwd)/HIV-phyloTSI-workshops"
+DIR_PROGRAM= "$(pwd)/HIV-phyloTSI"
+
+# install python dependencies for HIV-phyloTSI and load the environment
+conda env create -f HIV-phyloTSI-workshops/hivphylotsi.yml
+conda activate hivphylotsi
+```
+
+:::{.callout-note}
+When interacting with a terminal, learning the power of the `$` operator
+is key. The operator allows to evaluate variables (eg. `$HOME`) or to
+evaluate commands surrounded by brackets ( eg. `$(pwd)`).
+:::
+
+## Running the algorithm {.smaller background-color="`r clrs_lt[3]`"}
+
+Once all the ingredients are there, we can start cooking. It is
+relatively simple to run the analyses, even though we need to be precise
+in the way we specify the paths to the input data.
+
+```{.bash code-line-numbers="|2-3|4-6|8-9"}
+# Run HIV-phyloTSI on input data.
+python $DIR_PROGRAM/HIV-phyloTSI.py \
+    -d $DIR_PROGRAM/Model \
+    -p $DIR_WORKSHOP/HIV-phyloTSI-workshops/input/ptyr1_patStats.csv \ 
+    -m $DIR_WORKSHOP/HIV-phyloTSI-workshops/input/phsc_input_samples_maf.csv \ 
+    -o $DIR_WORKSHOP/HIV-phyloTSI-workshops/output/ptyr1_tsi_workshop.csv
+  
+# print header of output to make sure it exists:
+head $DIR_WORKSHOP/HIV-phyloTSI-workshops/output/ptyr1_tsi_workshop.csv
+```
+
+
+::: {.callout-note .bottom}
+The first 2 lines point to `$DIR_PROGRAM` because they refer to the code
+we want to use. On the other hand, the bottom 3 lines refer to the input
+data and output paths, and this is why they point to `$DIR_WORKSHOP`.
+:::
+
+
+## Visualising results {.smaller background-color="`r clrs_lt[3]`" .noincremental}
+
+As a first step, it is helpful to visualize the results and check whether they
+make sense. I provide some **R functions and scripts** to help the process, which 
+**can be found** in the github **repository**:
+
+- script:  `$DIR_WORKSHOP/src/workshop_analyses.R`
+- functions:  `$DIR_WORKSHOP/src/R/workshop_R_helpers.R`
+
+Again, we can use conda to install the necessary packages:
+
+```{bash}
+#| eval: false
+#| echo: true
+
+# install few R dependencies for visualisation and load the environment
+cd $DIR_WORKSHOP
+conda env create -f workshopR.yml
+conda activate workshopR
+```
+
+I will be showing snippets of the above code together with the plots they produce. <br>
+You can reproduce the steps by opening up the script in RStudio.
+
+## Predictors used {.smaller background-color="`r clrs_lt[3]`"}
+
+```{r}
+#| eval: false
+#| echo: true
+
+dtsi  <- fread(file.path(git_root, "data/ptyr1_tsi.csv"))
+plot_predictors_from_tsi_output(dtsi, exclude="dual")
+```
+
+![](figures/predictors.png){fig-align=center}
+
+## Evaluation on seroconverters {.smaller background-color="`r clrs_lt[3]`"}
+
+```{r}
+#| eval: false
+#| echo: true
+
+dall  <- merge(dtsi, ddates)
+plot_cross_interval_tsisero(dall, sqroot=TRUE)
+```
+![](figures/crosscheck.png){fig-align=center}
+
+## Histogram of estimates TSIs {.smaller background-color="`r clrs_lt[3]`"}
+
+```{r}
+#| eval: false
+#| echo: true
+
+p_hist <- plot_histogram_tsi(dtsi)
+```
+
+![](figures/histogram_phyloTSI.png){fig-align=center}

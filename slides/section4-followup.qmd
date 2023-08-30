@@ -1,0 +1,17 @@
+# Possible follow-up analyses { background-color="`r clrs[4]`"}
+
+:::{ .notes}
+30 minutes, really stress meant at population level.
+:::
+
+## Plan { background-color="`r clrs_lt[4]`"}
+
+
+- Simple stratification by age, sex, and other covariates of interest.
+
+- what NOT to do: changes in TSI by year of infection
+
+- How I personally usesd them for the MM paper.
+
+- mention Hinch's work on Generation intervals.
+

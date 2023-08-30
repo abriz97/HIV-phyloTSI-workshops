@@ -30,8 +30,8 @@ START --> M1 --> M2 --> M3 --> END
 Main steps: 
 
 - Next Generation Sequencing (NGS)
-- constructing phylogenies     [**MANY!**]{.fragment}
-- analyse phylogenies   
+- Constructing phylogenies     [**MANY!**]{.fragment}
+- Analysing phylogenies   
 
 
 ## Next Generation Sequencing { background-color="`r clrs_lt[2]`"}
@@ -130,19 +130,20 @@ different reads, we have all the ingredients that are necessary to run HIV-phylo
 This is the section we specifically focus on during the practical. 
 :::
 
-- Focus of the practical session
+- described in @golubchik_hiv-phylotsi_2022, [code](https://github.com/BDI-pathogens/HIV-phyloTSI/tree/main)
+- Focus of the practical session, 
 - takes as input features of phylogenies and MAFs.
 - returns a `csv` file with TSI estimates and some uncertainty range.
 
-## Summary { background-color="`r clrs_lt[2]`"}
+## Summary { .smaller background-color="`r clrs_lt[2]`"}
 
 ::: {.notes}
 So, to summarise, the differet steps are run according to this scheme.
 :::
 
-```{mermaid}
+::: {.absolute top=20}
+```{mermaid }
 graph LR
-
     subgraph S1["Primary Data Patients"]
         direction TB
         I01[(*.bam)] 
@@ -200,13 +201,21 @@ O2 --> P3
 O3 --> P4 
     P4 --> O4
 ```
+:::
 
-Red: run by group and window.
-Orange: run by group.
+:::: {.absolute bottom=55}
+::: {.callout-note}
+Steps run for each group and window are shown in red, while those running by group in orange
+:::
+:::: 
 
 ## But what is HIV-phyloTSI doing? { background-color="`r clrs_lt[2]`"}
 
 ::: {.notes}
+Before we move to the practical, it may be worth to spend a couple minutes to 
+explain what HIV-phyloTSI is doing under the hood: what type of ML model it is 
+using and how it was trained.
+
 random forest algorithm: little intuition
 Good thing is we do not need to understand the little details as long as we use 
 the code provided.

@@ -2,6 +2,7 @@
 
 :::{ .notes}
 40 minutes, this should be about background and things mentioned by Tanya
+Introduce power of 
 :::
 
 ## Recency of infection { background-color="`r clrs_lt[1]`"}

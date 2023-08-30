@@ -1,5 +1,5 @@
 ---
-title: "HIV-phyloTSI: IAVI workshop"
+title: "HIV-phyloTSI:<br>IAVI workshop"
 author: "Andrea Brizzi"
 date: 2023-11-12
 bibliography: references.bib
@@ -26,27 +26,10 @@ clrs_lt <- colorspace::lighten(clrs, 0.85)
 
 {{< include section2-bioinformatics.qmd >}}
 
+{{< include section3-practical.qmd >}}
 
+{{< include section3-followup.qmd >}}
 
-
-# HIV-PhyloTSI obtaining TSI estimates { background-color="`r clrs[3]`"}
-
-:::{ .notes}
-40 minutes, groups of 4
-:::
-
-## Test { background-color="`r clrs_lt[3]`"}
-
-which color is this
-
-
-# Possible follow-up analyses { background-color="`r clrs[4]`"}
-
-:::{ .notes}
-30 minutes, really stress meant at population level.
-:::
-
-## And this? { background-color="`r clrs_lt[4]`"}
 
 # References
 
