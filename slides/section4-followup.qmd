@@ -15,3 +15,51 @@
 
 - mention Hinch's work on Generation intervals.
 
+
+## simple analyses:
+
+If interested in median time since infection:
+- aggregate by (wide) age groups and compare medians
+  (maybe bootstap to show uncertainty of medians)
+  
+If interested in proportion of recent infections: 
+- ...
+
+
+## Simulation study: {.smaller}
+
+::: {.notes}
+Blue: true recents
+Orange: estimated recents
+Green: false recents: ie estimated recents but chronic
+bar at 2%
+:::
+
+In simulated settings, the prevalence of recent infections is well estimated,
+despite at least 2% of recent classifications are wrong.
+![](figures/HIVphyloTSI_simulatedcasestudy.png){width=100%}
+
+::: {.footer}
+@golubchik_hiv-phylotsi_2022
+:::
+
+## Pop ART ancillary 
+
+:::: {.columns}
+
+::: {.column width=30%}
+![](figures/HIVphyloTSI_popart_seroconverters.png){height=90%}
+:::
+
+::: {.column width=70%}
+![](figures/HIVphyloTSI_popart.png){height=80%}
+:::
+
+::::
+
+::: {.footer}
+HPTN 071-02 Phylogenetics ancillary study to the HPTN 071 (PopART): samples from HIV-positive participants in 9 communities in Zambia 2014-2019
+:::
+
+
+## HPTN application:

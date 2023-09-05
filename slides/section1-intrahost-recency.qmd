@@ -5,6 +5,7 @@
 Introduce power of 
 :::
 
+<!--
 ## Recency of infection { background-color="`r clrs_lt[1]`"}
 
 * *What?*   
@@ -15,11 +16,303 @@ Introduce power of
 * *Why ?* 
     + incidence estimation
     + study delays to diagnosis in subpopulations.
+  
+. . .
+
+* *How ?*
+  + longitudinal cohorts as long standard (expensive, time consuming)
+
+. . .
+-->
+
+## Why do we care about recency? { background-color="`r clrs_lt[1]`"}
+
+::: {.notes}
++ delays to diagnosis in sub-populations for 2nd one too
+:::
+
++ incidence estimation
+
++ identifying sub-populations sufferinng from recent infections are happening. 
+
++ determining generation intervals.
 
 . . .
 
-* *How ?*   
-    + RITA approach
-    + **intra-host HIV diversity**
+but getting data is hard:
 
-## { background-color="`r clrs_lt[1]`"}
++ longitudinal cohorts as gold standard 
+
++ alternatives which are discussed in this section
+
+
+## What is recency? Natural history of HIV  {.smaller  background-color="`r clrs_lt[1]`" incremental="false"}
+
+::: { .notes } 
+- mention different stage classifications:Fiebing? ...
+- describe natural history of HIV: complex interplay between VL and CD4 counts
+- mention "imbalance": a very short dynamic period preceeds a long and static one.
+  A very high VL may be indicative of a recent infection. However, a "medium" value
+  does not help us discriminate/distinguish among other dates.
+:::
+
+
+![](figures/HIV_natural_history.png){fig-align="center" width=70%}
+
+. . .
+
+dynamics define infection stages: 
+[ CDC: -@centers_for_disease_control_and_prevention_cdc_revised_2014] ;
+[ Fiebig et al. -@fiebig_dynamics_2003]
+  
+::: {.footer}
+source: [wikidoc](https://www.wikidoc.org/index.php/HIV_AIDS_natural_history,_complications,_and_prognosis)
+:::
+
+## Lab assays to identify infection stages {.smaller background-color="`r clrs_lt[1]`"}
+
+
+::: {.notes}
++ "lab" assay are based on the differences in internal "stages" of infection and 
+  immune response. For example a person may be suspected to be recent if 
+  first-level response antigens are present, but not other antigens more specific to HIV-1
+:::
+
+
+:::: {.columns}
+
+::: {.column width=50%}
+
+::: {.notes}
+test by seeing whether blood react when exposed to specific antigens.
+1. is based antigen test based on increase in antibodies over time
+2. quality of antibody respons
+3. proportion of HIV-specific IgG to total IgG.
+:::
+
+Based on the quality and type of immune response. 
+
+- **Less sensitive Enzyme Immunoassays**, antigen test [-@Janssen...]
+- **Lag-Avidity**  [-@Duong2012]
+- **Bed-CEIA** [-@Parek2011]
+:::
+
+::: {.column width=50%}
+![](figures/HIV_serology.jpg){width=100% height=100%}
+:::
+
+::: {.footer}
+source: [UW medicine](https://depts.washington.edu/uwviro/hiv-diagnostic-and-molecular-testing/)
+:::
+
+::::
+
+
+---
+  
+## {background-color="`r clrs_lt[1]`" .smaller}
+
+This is great, but specificity and sensitivity are hard to control: 
+
++ individual level variation, confounding subtypes, ART status...
+
+![](figures/HIV_subtypes.jpg){fig-align="center"}
+
+::: {.footer}
+@layendecker2013
+:::
+
+
+::: {.notes}
+Being affected by ART makes it harder to trust results in a world where
+ART is more available, subtype makes it harder to generalise by location
+:::
+
+## An alternative unit of time: genetic diversity {.smaller background-color="`r clrs_lt[1]`"}
+
+::: {.notes}
++ these assay generally target only one of the many facets of HIV response.
+  I focused on antibody response and VL, but evolution dynamics bring up 
+  another source of information.
+:::
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+![](figures/moyo_identifying_figure1.png){width=100% height=100%}
+
+::: footer
+@moyo_identifying_2015 reviews molecular & serological assays.
+:::
+
+:::: 
+
+:::: {.column width="60%"}
+
+::: {.notes}
+give detail on Ragonnet, still need a training set with recent and non-recent.
++ use of demographics.
+:::
+
++ HIV infection is a multi-faceted phenomenon: immune response is just one facet.
+
++ HIV-1 diversity grows as a function on time since infection.
+
++ NGS is more informative than Sanger (@carlisle_viral_2019)
+    
+:::: 
+
+::::: 
+
+## Case study: recency in Botswana  {.smaller background-color="`r clrs_lt[1]`"}
+
+::: {.notes}
+before moving to HIV-phyloTSI, I want to go through another application of 
+NGS data in the context of estimating time since infection in an African setting. 
+In particular, highlighting the strength and limitations of such studies will 
+help us: 1. put in context the HIV-phyloTSI algorith and 
+2. understand its advantages and drawbacks
+::: 
+
+@ragonnet-cronin_human_2022 developed recency classifier 
+
++ **end goal**: characterizing undiagnosed cases in Botswana (@bhebhe_epidemiological_2022) 
++ **data**: demographic data, some testing data and individual level NGS
++ **how**: train ML model on known recent and known chronic infections, and use it to classify unknown.
+
+. . .
+
+comments on model: 
+
+1. still required cohort study, and *not directly generalisable* to other contexts.
+2. *simple measures of diversity*: entropy and mean pairwise distance
+3. these alone are *not enough* to provide good classification
+
+## Case study: recency in Botswana  {.smaller background-color="`r clrs_lt[1]`"}
+
+::: {.r-stack}
+![](figures/ragonnet2022_fig2b.png){width=80% fig-align='center'}
+:::
+
+:::{.footer}
+@ragonnet-cronin_human_2022
+:::
+
+
+## HIV-phylo TSI {background-color="`r clrs_lt[1]`"}
+
+::: {.notes}
+Addresses drawbacks of previous methods.
+:::
+
+@golubchik_hiv-phylotsi_2022 tackles weaknesses of previous approach:
+
+1. **Pre-trained**: no need for expensive training data.
+2. Captures more complex **measures of divergence**.
+3. Comparatively **low false recency rate** using exclusively NGS data.
+
+## HIV-phylo TSI: training data {background-color="`r clrs_lt[1]`" .smaller}
+
+sequences from PANGEA and BEEHIVE with known infection range.
+
+![](figures/HIVphyloTSI_trainingdata.png){width=100% fig-align="center"}
+
+## HIV-phylo TSI: intrahost diversity {background-color="`r clrs_lt[1]`" .smaller}
+
+choice of predictors based on viral diversification following infection.
+
+1. "Accumulated" mutations on codons.
+1. "Depth" of host-specific subtree in phylogeny. (LRTT)
+
+:::{.r-stack}
+
+![](figures/HIVphyloTSI_mafs.png){.fragment width=100% fig-align="center"}
+
+![](figures/phyloscanner_trees_genome.png){.fragment width=100% fig-align="center"}
+
+:::
+
+## But why these measures of intrahost diversity? {background-color="`r clrs_lt[1]`" .smaller}
+
+:::{.notes}
+250bp rolling mean:
+- regions along the genome where genetic divergence increases significantly over time
+- LRTT as "distance from founder" virus 
+- MAF to measure accumulation of mutations 
+:::
+
+![](figures/HIVphyloTSI_diversity_along_genome.png){width=100%}
+
+
+## HIV-phylo TSI model {background-color="`r clrs_lt[1]`" }
+
+different signal in different part of the genome. How to combine predictors?
+
+- take average over gene
+- let the model pick up the informative covariates.
+
+. . .
+
+- Best performing set of features chosen through LOOCV
+
+- Regressor performs well as a classifier too, but FRR (~10%)
+
+  
+
+## HIV-phylo TSI performances: bias {background-color="`r clrs_lt[1]`" .smaller}
+
+:::: {.columns}
+
+::: {.column width=40%}
++ bias is low in infections < 9 years.
++ range of individual-level errors can be quite wide. 
+
+For applications: 
+
++ estimates are not precise at the individuals level BUT
++ there is signal in medians taken among subpopulation.
+
+::: 
+
+::: {.column width=60%}
+![](figures/HIVphyloTSI_bias.png){fig-align='center' width=80%}
+::: 
+
+:::: 
+
+## HIV-phyloTSI performances: robustness to subtype  {background-color="`r clrs_lt[1]`"}
+
+:::: {.columns }
+
+::: {.column width=35%}
+model bias was close to 0 for all subtypes included in the dataset.
+::: 
+
+::: {.column width=65%}
+![](figures/HIVphyloTSI_subtype.png){width=80% fig-align="center"}
+::: 
+
+:::: 
+
+
+## HIV-phyloTSI performances: robustness to ART (? {background-color="`r clrs_lt[1]`" .smaller}
+
+
+:::: {.columns }
+
+::: {.column width=35%}
+Some individuals in the training data reported prior ART use.
+
+- followed pattern
+
+- BUT: small sample size
+
+- AND: no predictions for suppressed individuals.
+
+::: 
+
+::: {.column width=65%}
+![](figures/HIVphyloTSI_reportedart.png){width=80% fig-align="center"}
+::: 
+
+::::

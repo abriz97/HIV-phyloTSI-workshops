@@ -46,7 +46,7 @@ opens new doors.
 :::
 
 - simultaneous sequencing of multiple viral particles to capture within-host diversity
-- PANGEA protocols: Gall (TOCITE) and Bonsall et al.[@bonsall_comprehensive_2018]
+- PANGEA protocols: Gall [@gall_universal_2012] and Bonsall et al.[@bonsall_comprehensive_2018]
 - TSI pipeline starts with the outputs produced by `shiver` [@wymant_easy_2018]: `*.bam`, `*.ref.fasta`
 
 ![](figures/shiver.png){fig-align=center}
@@ -59,7 +59,7 @@ want predictions, the total number of sequences to consider increases very fast.
 Further, inferring tree structures becomes harder with the length of the sequences,
 and therefore we typically break the genome in chunks which are  ~250 bp long.
 To avoid working with too many parts, we group individuals (or hosts) in groups 
-of size 50, and aim to build ony phylogeny per group, per 250 bp long genetic 
+of size 50, and aim to build one phylogeny per group, per 250 bp long genetic 
 window.
 Building trees requires that we are able to map chunks of one virus' genome to 
 another virus' genome (ie. comparing apple to apples.)
@@ -69,9 +69,12 @@ plot is too small right now
 :::
 
 - Many sequences, many hosts, many genome windows [-> **group by host!**]{.fragment} 
-- aligning to compare "apples to apples": MAFFT TOCITE
+- aligning to compare "apples to apples": MAFFT [@katoh_mafft_2002]
 
 ![](figures/deepseqalign_workshop.png){.fragment fig-align=center}
+::: {.footer}
+The figure was generated with AliView
+::: 
 
 ## Inferring phylogenies { background-color="`r clrs_lt[2]`"}
 
@@ -81,9 +84,13 @@ we can produce phylogenetic trees describing the evolutionary dependencies
 within- and between- hosts. This is done through IQTREE 
 :::
 
-- Phylogenies are made through IQTREE by group and window through IQTREE (TOCITE)
+- Phylogenies are made through IQTREE by group and window through IQTREE [@nguyen_iq-tree_2015]
 
 ![](figures/ptyr1_InWindow_9075_to_9324_v2.treefile.png){fig-align=center}
+
+:::{.footer}
+The image was generated with FigTree
+::: 
 
 ## Analysing phylogenies { background-color="`r clrs_lt[2]`"}
 
