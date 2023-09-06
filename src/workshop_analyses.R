@@ -35,6 +35,9 @@ palette_hostid <- make_palette_based_on_dates(ddates)
 # check that visit date correspons to first positive date.
 ddates[!is.na(first_pos_dt), table(visit_dt == first_pos_dt)]
 
+# merge tsi estimates with dates 
+dall <- merge(dtsi, ddates)
+
 #######################################
 # PLOTTING TSI RESULTS AND PREDICTORS #
 #######################################
@@ -50,9 +53,6 @@ p_patstats      <- plot_patstats_predictors(patstats_sub)
 
 # plotting tsi estimates
 p_preds <- plot_predictors_from_tsi_output(dtsi, exclude="dual")
-
-# merge tsi estimates with dates 
-dall <- merge(dtsi, ddates)
 
 # final plots
 p_cross <- plot_cross_interval_tsisero(dall, sqroot=TRUE)
@@ -89,7 +89,9 @@ ggpubr::ggarrange(
     p3 + ggtitle("Unknown first positive"),
     ncol=1, nrow=3
 ) -> p_combined 
-ggsave(p_combined, filename=file.path(git_figures, "bstrap_medianTSI_combined.png"), w=10, h=24)
+
+# save everything
+ggsave(p_combined, filename=file.path(git_figures, "bstrap_medianTSI_combined.png"), w=10, h=14)
 ggsave(p1, filename=file.path(git_figures, "bstrap_medianTSI_all.png"), w=10, h=8)
 ggsave(p2, filename=file.path(git_figures, "bstrap_medianTSI_recent.png"), w=10, h=8)
 ggsave(p3, filename=file.path(git_figures, "bstrap_medianTSI_unknown.png"), w=10, h=8)
