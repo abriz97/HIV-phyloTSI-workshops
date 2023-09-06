@@ -19,6 +19,7 @@ format:
           - "section4-followup.qmd"
 ---
 
+
 ```{r include=FALSE}
 library(tidyverse)
 # clrs <- MetBrewer::met.brewer(name = "Java")
@@ -26,10 +27,10 @@ clrs <- MetBrewer::met.brewer(name = "Peru1")[c(1, 3, 5, 6)]
 clrs_lt <- colorspace::lighten(clrs, 0.85)
 ```
 
+
 {{< include section1-intrahost-recency.qmd >}}
 
 {{< include section2-bioinformatics.qmd >}}
-
 
 {{< include section3-practical.qmd >}}
 

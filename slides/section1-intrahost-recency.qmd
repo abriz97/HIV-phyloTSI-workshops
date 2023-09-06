@@ -92,9 +92,9 @@ test by seeing whether blood react when exposed to specific antigens.
 
 Based on the quality and type of immune response. 
 
-- **Less sensitive Enzyme Immunoassays**, antigen test [-@Janssen...]
-- **Lag-Avidity**  [-@Duong2012]
-- **Bed-CEIA** [-@Parek2011]
+- **Less sensitive Enzyme Immunoassays**, antigen test [-@janssen_new_1998]
+- **Lag-Avidity**  [-@duong_detection_2012]
+- **Bed-CEIA** [-@parekh_determination_2011]
 :::
 
 ::: {.column width=50%}
@@ -119,7 +119,7 @@ This is great, but specificity and sensitivity are hard to control:
 ![](figures/HIV_subtypes.jpg){fig-align="center"}
 
 ::: {.footer}
-@layendecker2013
+@laeyendecker_development_2013
 :::
 
 
@@ -222,7 +222,7 @@ sequences from PANGEA and BEEHIVE with known infection range.
 choice of predictors based on viral diversification following infection.
 
 1. "Accumulated" mutations on codons.
-1. "Depth" of host-specific subtree in phylogeny. (LRTT)
+2. "Depth" of host-specific subtree in phylogeny. (LRTT)
 
 :::{.r-stack}
 

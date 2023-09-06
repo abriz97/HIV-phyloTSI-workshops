@@ -4,6 +4,7 @@
 30 minutes, really stress meant at population level.
 :::
 
+<!--
 ## Plan { background-color="`r clrs_lt[4]`"}
 
 
@@ -11,19 +12,49 @@
 
 - what NOT to do: changes in TSI by year of infection
 
-- How I personally usesd them for the MM paper.
+- How I personally used them for the MM paper.
 
 - mention Hinch's work on Generation intervals.
 
+-->
 
-## simple analyses:
 
-If interested in median time since infection:
-- aggregate by (wide) age groups and compare medians
-  (maybe bootstap to show uncertainty of medians)
-  
-If interested in proportion of recent infections: 
-- ...
+## Prevalence of recent infections {.smaller}
+
+::: {.notes}
+one of the principal objectives of HIV-phyloTSI  is to estimate incidence, by
+estimating the proportion of infection that are recent.
+:::
+
+:::: { .columns }
+
+::: { .column  width=60%}
+Following @freeman_prevalence_1980 and @brookmeyer_estimation_1995, if incidence is constant, it can be estimated as:
+
+$$
+  I = \frac{\text{# recent}}{\text{# diagnoses} \times MDRI }
+$$
+:::
+
+
+
+::: { .column width=40%}
+![](figures/mdri.png){fig-align="center" layout-valign="center}
+:::
+
+::::
+
+where $MDRI$ = mean duration of recency of infection.
+
+- $MDRI = P[\text{ever being classified as recent}] \times E[ TSI | \text{classified as recent} ]$ 
+- **not a constant**: viral suppression, underlying population.
+
+Here we **focus on the numerator**.
+
+::: {.footer}
+source: [slides by Laeyendecker](https://www.slideshare.net/HopkinsCFAR/laboratory-assayscrosssectional-incidence-testing-blood-spots-and-hiv-viral-loads-from-blood-spots)
+:::
+
 
 
 ## Simulation study: {.smaller}
@@ -43,23 +74,159 @@ despite at least 2% of recent classifications are wrong.
 @golubchik_hiv-phylotsi_2022
 :::
 
-## Pop ART ancillary 
+## Application in Zambia {.smaller}
+
+When directly applied to real-world data, HIV-phyloTSI generally produces smaller TSI  
+for known recent infections as compared to people with unknown first positive date:
 
 :::: {.columns}
 
 ::: {.column width=30%}
-![](figures/HIVphyloTSI_popart_seroconverters.png){height=90%}
+![](figures/HIVphyloTSI_popart_seroconverters.png){height=94% layout-valign="center" .fragment}
 :::
 
 ::: {.column width=70%}
-![](figures/HIVphyloTSI_popart.png){height=80%}
+![](figures/HIVphyloTSI_popart.png){height=82% layout-valign="center" .fragment}
 :::
 
 ::::
+
+=> Can be used to compare median TSIs among population subgroups.
 
 ::: {.footer}
 HPTN 071-02 Phylogenetics ancillary study to the HPTN 071 (PopART): samples from HIV-positive participants in 9 communities in Zambia 2014-2019
 :::
 
+## Suggestions on TSI comparison among groups {.smaller}
 
-## HPTN application:
+::: {.notes}
+-> Do not use means, as distribution is skewed (need to square results...) 
+:::
+
+Comparing simple summary statistics can be misleading: 
+
+- need to make sure statistic is *reliable*
+- need to *chose* summary statistic: [**median**]{.fragment}
+
+For reliability:
+
+1. make sure groups are large enough (*minimum of 40 per group*)
+2. Perform **bootstrap** to estimate uncertainty around  
+
+## Suggestions on TSI comparison:  bootstrap {.smaller}
+
+::: {.notes}
+read then mention what the equivalent would be for this scenario
+:::
+
+Bootstrapping: statistical technique which *recycles* analysis data to estimate
+uncertainty around an estimator (e.g. median).
+
+1. **Synthetic data** sets of the same size are obtained by sampling with replacement from the data.
+2. The **estimator is computed** on each synthetic data set.
+3. The distribution of the estimators obtained on the syntetic data sets is summarised through 95% quantiles.
+
+## Results on sample dataset:
+
+::: {.notes}
+Small sample sizes, but worth it to illustrate: 1. algorithm, and 2. uncertainty around medians.
+:::
+
+![](figures/bstrap_medianTSI_combined.png){height=80% width=60%}
+
+::: {.footer}
+code [here](https://github.com/abriz97/HIV-phyloTSI-workshops/blob/main/src/workshop_analyses.R)
+:::
+
+## How **NOT** to perform grouping:
+
+::: {.notes}
+explain why:
+1. of course, if we chose only individuals with HIV-phyloTSI < 1, there is 0 probability of using ... 
+2. If we have cross-sectional data, the only infections that are estimated to be from 5-10 years ago will be chronic infection. We are not able to observe recent infections from that period, 
+implying we should not compare this different time periods.
+3. more of a personal heuristic suggestion, 
+::: 
+
+Groups should be made based on covariates different than HIV-phyloTSI inputs or outputs.
+
+Do NOT:
+
+1. Group by estimate of HIV-phyloTSI 
+2. Group by estimated date of infection 
+3. Again: chose groups of sizes < 40
+
+## Other analyses on population level outputs:
+
+Estimation of generation time distribution
+
+Enriching source-recipient pairs by providing time since infection.
+
+- Zambia [@hall_demographics_2021]
+- Rakai: [@monod_growing_2023]
+
+::: {.callout-important}
+To account for individual level uncertainty, these studies not only make use of
+central estimates, but also the output prediction/uncertainty range
+:::
+
+## Dating infection events in Rakai
+
+::: {.footer}
+@monod_growing_2023
+:::
+
+::: {.notes}
+Note that although here it seems we are performing analyses at the individual 
+level, the analyses are then performed by age groups and gender by performing
+some fancy smoothing: we do not need each pair to be 100% sure.
+:::
+
+- Infection pairs data from Rakai Community Cohort Study
+
+- Transmission pairs detected with phyloscanner @ratmann_quantifying_2020
+
+- Question: how did transmission pattern change over time? 
+
+- Need to date infections
+
+## Dating infection events in Rakai
+
+::: {.footer}
+@monod_growing_2023
+:::
+
+:::{.r-stack}
+
+![](figures/dating_infection_pairs1.png){.fragment width=120% fig-align="center"}
+
+![](figures/dating_infection_pairs2.png){.fragment width=100% fig-align="center"}
+
+![](figures/dating_infection_pairs3.png){.fragment width=100% fig-align="center"}
+
+![](figures/dating_infection_pairs4.png){.fragment width=100% fig-align="center"}
+
+:::
+
+
+::: {.footer}
+@monod_growing_2023
+:::
+
+
+## Summing up {.smaller}
+
+::: {.notes}
+Unanswered questions: generation intervals
+:::
+
+- HIV-phyloTSI is a novel algorithm to estimate infection dates.
+
+- alternative to serological assays which allows more control on definition of recency
+  (Robust to subtype and ART usage)
+
+- preliminary analyses and simulation studies demonstrate good performances at population level
+
+- but may be inaccurate at the individual level: very large prediction intervals.
+
+- Can help us explore answers to unanswered questions

@@ -95,16 +95,19 @@ data and output paths, and this is why they point to `$DIR_WORKSHOP`.
 :::
 
 
-## Visualising results {.smaller background-color="`r clrs_lt[3]`" .noincremental}
+## Visualising results {.smaller background-color="`r clrs_lt[3]`" .nonincremental}
 
+::: {.notes}
 As a first step, it is helpful to visualize the results and check whether they
-make sense. I provide some **R functions and scripts** to help the process, which 
+make sense. 
+:::
+I provide some **R functions and scripts** to visualise results, which 
 **can be found** in the github **repository**:
 
 - script:  `$DIR_WORKSHOP/src/workshop_analyses.R`
 - functions:  `$DIR_WORKSHOP/src/R/workshop_R_helpers.R`
 
-Again, we can use conda to install the necessary packages:
+Again, we can use conda to **install the necessary packages**:
 
 ```{bash}
 #| eval: false
