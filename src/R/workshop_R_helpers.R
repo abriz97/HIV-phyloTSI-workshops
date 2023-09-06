@@ -233,3 +233,54 @@ plot_histogram_tsi <- function(DT){
         labs( x="Estimated TSIs", y="Count", title="Shortest predictions are from seroconverters")
     return(p)
 }
+
+bootstrap_median <- function(x, n=10000, plot=TRUE) {
+
+    samples_bootstrap <- sapply(seq_len(n), function(i) {
+        # draw a sample of the same length as the data with replacement
+        y <- sample(x, replace=TRUE)
+        # compute the median
+        median(y)
+    })
+
+    qs <- quantile(samples_bootstrap, probs=c(0.25, 0.5, 0.75))
+
+    if (plot) {
+        print(qs)
+        p <- ggplot(data.frame(samples_bootstrap), aes(x=samples_bootstrap)) +
+            geom_histogram(bins=40, color='grey80') +
+            geom_vline(xintercept=median(x), color="red", size=1.5) +
+            lims(x=c(0, 10)) + 
+            theme_bw()
+        print(p)
+        return(p)
+    }else{
+        return(qs)
+    }
+}
+
+bootstrap_mean <- function(x, n=10000, plot=TRUE) {
+
+    samples_bootstrap <- sapply(seq_len(n), function(i) {
+        # draw a sample of the same length as the data with replacement
+        y <- sample(x, replace=TRUE)
+        # compute the median
+        mean(y)
+    })
+
+    qs <- quantile(samples_bootstrap, probs=c(0.25, 0.5, 0.75))
+
+    if (plot) {
+        print(qs)
+        p <- ggplot(data.frame(samples_bootstrap), aes(x=samples_bootstrap)) +
+            geom_histogram(bins=40, color='grey80') +
+            geom_vline(xintercept=mean(x), color="red", size=1.5) +
+            lims(x=c(0, 1)) + 
+            theme_bw()
+        print(p)
+        return(p)
+    }else{
+        return(qs)
+    }
+}
+
