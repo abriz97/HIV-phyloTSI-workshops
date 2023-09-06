@@ -91,7 +91,7 @@ ggpubr::ggarrange(
 ) -> p_combined 
 
 # save everything
-ggsave(p_combined, filename=file.path(git_figures, "bstrap_medianTSI_combined.png"), w=10, h=10)
+ggsave(p_combined, filename=file.path(git_figures, "bstrap_medianTSI_combined.png"), w=12, h=10)
 ggsave(p1, filename=file.path(git_figures, "bstrap_medianTSI_all.png"), w=10, h=8)
 ggsave(p2, filename=file.path(git_figures, "bstrap_medianTSI_recent.png"), w=10, h=8)
 ggsave(p3, filename=file.path(git_figures, "bstrap_medianTSI_unknown.png"), w=10, h=8)
