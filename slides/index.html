@@ -553,9 +553,9 @@ Andrea Brizzi
       }</style></aside>
 <p>Based on the quality and type of immune response.</p>
 <ul>
-<li class="fragment"><strong>Less sensitive Enzyme Immunoassays</strong>, antigen test <span class="citation" data-cites="Janssen">(<a href="#/references" role="doc-biblioref" onclick=""><strong>Janssen?</strong></a>…)</span></li>
-<li class="fragment"><strong>Lag-Avidity</strong> <span class="citation" data-cites="Duong2012">(<a href="#/references" role="doc-biblioref" onclick=""><strong>Duong2012?</strong></a>)</span></li>
-<li class="fragment"><strong>Bed-CEIA</strong> <span class="citation" data-cites="Parek2011">(<a href="#/references" role="doc-biblioref" onclick=""><strong>Parek2011?</strong></a>)</span></li>
+<li class="fragment"><strong>Less sensitive Enzyme Immunoassays</strong>, antigen test <span class="citation" data-cites="janssen_new_1998">(<a href="#/references" role="doc-biblioref" onclick="">1998</a>)</span></li>
+<li class="fragment"><strong>Lag-Avidity</strong> <span class="citation" data-cites="duong_detection_2012">(<a href="#/references" role="doc-biblioref" onclick="">2012</a>)</span></li>
+<li class="fragment"><strong>Bed-CEIA</strong> <span class="citation" data-cites="parekh_determination_2011">(<a href="#/references" role="doc-biblioref" onclick="">2011</a>)</span></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <p><img data-src="figures/HIV_serology.jpg" style="width:100.0%;height:100.0%"></p>
@@ -572,7 +572,7 @@ Andrea Brizzi
 </ul>
 
 <img data-src="figures/HIV_subtypes.jpg" class="r-stretch quarto-figure-center"><div class="footer">
-<p><span class="citation" data-cites="layendecker2013">(<a href="#/references" role="doc-biblioref" onclick=""><strong>layendecker2013?</strong></a>)</span></p>
+<p><span class="citation" data-cites="laeyendecker_development_2013">Laeyendecker et al. (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span></p>
 </div>
 <aside class="notes">
 <p>Being affected by ART makes it harder to trust results in a world where ART is more available, subtype makes it harder to generalise by location</p>
@@ -886,8 +886,8 @@ START --&gt; M1 --&gt; M2 --&gt; M3 --&gt; END
       }</style></aside>
 <ul>
 <li class="fragment">simultaneous sequencing of multiple viral particles to capture within-host diversity</li>
-<li class="fragment">PANGEA protocols: Gall <span class="citation" data-cites="gall_universal_2012">(<a href="#/references" role="doc-biblioref" onclick="">Gall et al. 2012</a>)</span> and Bonsall et al.<span class="citation" data-cites="bonsall_comprehensive_2018">(<a href="#/references" role="doc-biblioref" onclick="">Bonsall et al. 2018</a>)</span></li>
-<li class="fragment">TSI pipeline starts with the outputs produced by <code>shiver</code> <span class="citation" data-cites="wymant_easy_2018">(<a href="#/references" role="doc-biblioref" onclick="">Wymant et al. 2018</a>)</span>: <code>*.bam</code>, <code>*.ref.fasta</code></li>
+<li class="fragment">PANGEA protocols: I <span class="citation" data-cites="gall_universal_2012">(<a href="#/references" role="doc-biblioref" onclick="">2012</a>)</span> and II <span class="citation" data-cites="bonsall_comprehensive_2018">(<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span></li>
+<li class="fragment">TSI pipeline starts with the outputs produced by <code>shiver</code> <span class="citation" data-cites="wymant_easy_2018">(<a href="#/references" role="doc-biblioref" onclick="">2018</a>)</span>: <code>*.bam</code>, <code>*.ref.fasta</code></li>
 </ul>
 
 <img data-src="figures/shiver.png" class="r-stretch quarto-figure-center"></section>
@@ -910,7 +910,10 @@ START --&gt; M1 --&gt; M2 --&gt; M3 --&gt; END
 <li class="fragment">Many sequences, many hosts, many genome windows <span class="fragment">-&gt; <strong>group by host!</strong></span></li>
 <li class="fragment">aligning to compare “apples to apples”: MAFFT <span class="citation" data-cites="katoh_mafft_2002">(<a href="#/references" role="doc-biblioref" onclick="">Katoh 2002</a>)</span></li>
 </ul>
-<p><img data-src="figures/deepseqalign_workshop.png" class="fragment" data-fig-align="center"> ::: {.footer} The figure was generated with AliView :::</p>
+
+<img data-src="figures/deepseqalign_workshop.png" class="fragment r-stretch quarto-figure-center"><div class="footer">
+<p>The figure was generated with AliView</p>
+</div>
 </section>
 <section id="inferring-phylogenies" class="slide level2" data-background-color="#A1FFDE">
 <h2>Inferring phylogenies</h2>
@@ -932,7 +935,7 @@ START --&gt; M1 --&gt; M2 --&gt; M3 --&gt; END
 </ul>
 
 <img data-src="figures/ptyr1_InWindow_9075_to_9324_v2.treefile.png" class="r-stretch quarto-figure-center"><div class="footer">
-<p>The image was generated with FigTree</p>
+<p>The figure was generated with FigTree</p>
 </div>
 </section>
 <section id="analysing-phylogenies" class="slide level2" data-background-color="#A1FFDE">
@@ -1116,6 +1119,7 @@ O3 --&gt; P4
 <ul>
 <li class="fragment"><strong>ML algorithm</strong>, in particular Random Forest.</li>
 </ul>
+<p>TODOOOOOOOOOOOOOOOOOOOOOOOOooooo</p>
 </section></section>
 <section>
 <section id="hiv-phylotsi-obtaining-tsi-estimates" class="title-slide slide level1 center" data-background-color="#369cc9">
@@ -1225,14 +1229,27 @@ O3 --&gt; P4
 </div>
 </div>
 </section>
-<section id="visualising-results" class="slide level2 smaller noincremental" data-background-color="#DEF1FF">
+<section id="visualising-results" class="slide level2 smaller nonincremental" data-background-color="#DEF1FF">
 <h2>Visualising results</h2>
-<p>As a first step, it is helpful to visualize the results and check whether they make sense. I provide some <strong>R functions and scripts</strong> to help the process, which <strong>can be found</strong> in the github <strong>repository</strong>:</p>
+<aside class="notes">
+<p>As a first step, it is helpful to visualize the results and check whether they make sense.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>I provide some <strong>R functions and scripts</strong> to visualise results, which <strong>can be found</strong> in the github <strong>repository</strong>:</p>
 <ul>
 <li class="fragment">script: <code>$DIR_WORKSHOP/src/workshop_analyses.R</code></li>
 <li class="fragment">functions: <code>$DIR_WORKSHOP/src/R/workshop_R_helpers.R</code></li>
 </ul>
-<p>Again, we can use conda to install the necessary packages:</p>
+<p>Again, we can use conda to <strong>install the necessary packages</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># install few R dependencies for visualisation and load the environment</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="bu">cd</span> <span class="va">$DIR_WORKSHOP</span></span>
@@ -1280,23 +1297,60 @@ O3 --&gt; P4
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+<!--
+## Plan { background-color="#D9E2FF"}
+
+
+- Simple stratification by age, sex, and other covariates of interest.
+
+- what NOT to do: changes in TSI by year of infection
+
+- How I personally used them for the MM paper.
+
+- mention Hinch's work on Generation intervals.
+
+-->
 </section>
-<section id="plan-1" class="slide level2" data-background-color="#D9E2FF">
-<h2>Plan</h2>
+<section id="prevalence-of-recent-infections" class="slide level2 smaller">
+<h2>Prevalence of recent infections</h2>
+<aside class="notes">
+<p>one of the principal objectives of HIV-phyloTSI is to estimate incidence, by estimating the proportion of infection that are recent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Following <span class="citation" data-cites="freeman_prevalence_1980">Freeman and Hutchison (<a href="#/references" role="doc-biblioref" onclick="">1980</a>)</span> and <span class="citation" data-cites="brookmeyer_estimation_1995">Brookmeyer and Quinn (<a href="#/references" role="doc-biblioref" onclick="">1995</a>)</span>, if incidence is constant, it can be estimated as:</p>
+<p><span class="math display">\[
+  I = \frac{\text{# recent}}{\text{# diagnoses} \times MDRI }
+\]</span></p>
+</div><div class="column" style="width:40%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/mdri.png" data-layout-valign="&quot;center"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>where <span class="math inline">\(MDRI\)</span> = mean duration of recency of infection.</p>
 <ul>
-<li class="fragment"><p>Simple stratification by age, sex, and other covariates of interest.</p></li>
-<li class="fragment"><p>what NOT to do: changes in TSI by year of infection</p></li>
-<li class="fragment"><p>How I personally usesd them for the MM paper.</p></li>
-<li class="fragment"><p>mention Hinch’s work on Generation intervals.</p></li>
+<li class="fragment"><span class="math inline">\(MDRI = P[\text{ever being classified as recent}] \times E[ TSI | \text{classified as recent} ]\)</span></li>
+<li class="fragment"><strong>not a constant</strong>: viral suppression, underlying population.</li>
 </ul>
+<p>Here we <strong>focus on the numerator</strong>.</p>
+<div class="footer">
+<p>source: <a href="https://www.slideshare.net/HopkinsCFAR/laboratory-assayscrosssectional-incidence-testing-blood-spots-and-hiv-viral-loads-from-blood-spots">slides by Laeyendecker</a></p>
+</div>
 </section>
-<section id="simple-ideas" class="slide level2">
-<h2>simple ideas:</h2>
-<ul>
-<li class="fragment">aggregate by (wide) age groups and compare medians (maybe bootstap to show uncertainty of medians)</li>
-</ul>
-</section>
-<section id="simulation-study" class="slide level2">
+<section id="simulation-study" class="slide level2 smaller">
 <h2>Simulation study:</h2>
 <aside class="notes">
 <p>Blue: true recents Orange: estimated recents Green: false recents: ie estimated recents but chronic bar at 2%</p>
@@ -1316,18 +1370,213 @@ O3 --&gt; P4
 <p><span class="citation" data-cites="golubchik_hiv-phylotsi_2022">Golubchik et al. (<a href="#/references" role="doc-biblioref" onclick="">2022</a>)</span></p>
 </div>
 </section>
-<section id="pop-art-ancillary" class="slide level2">
-<h2>Pop ART ancillary</h2>
+<section id="application-in-zambia" class="slide level2 smaller">
+<h2>Application in Zambia</h2>
+<p>When directly applied to real-world data, HIV-phyloTSI generally produces smaller TSI<br>
+for known recent infections as compared to people with unknown first positive date:</p>
 <div class="columns">
 <div class="column" style="width:30%;">
-<p><img data-src="figures/HIVphyloTSI_popart_seroconverters.png" style="height:90.0%"></p>
+<p><img data-src="figures/HIVphyloTSI_popart_seroconverters.png" class="fragment" style="height:94.0%" data-layout-valign="center"></p>
 </div><div class="column" style="width:70%;">
-<p><img data-src="figures/HIVphyloTSI_popart.png" style="height:80.0%"></p>
+<p><img data-src="figures/HIVphyloTSI_popart.png" class="fragment" style="height:82.0%" data-layout-valign="center"></p>
+</div>
+</div>
+<p>=&gt; Can be used to compare median TSIs among population subgroups.</p>
+<div class="footer">
+<p>HPTN 071-02 Phylogenetics ancillary study to the HPTN 071 (PopART): samples from HIV-positive participants in 9 communities in Zambia 2014-2019</p>
+</div>
+</section>
+<section id="suggestions-on-tsi-comparison-among-groups" class="slide level2 smaller">
+<h2>Suggestions on TSI comparison among groups</h2>
+<aside class="notes">
+<p>-&gt; Do not use means, as distribution is skewed (need to square results…)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>Comparing simple summary statistics can be misleading:</p>
+<ul>
+<li class="fragment">need to make sure statistic is <em>reliable</em></li>
+<li class="fragment">need to <em>chose</em> summary statistic: <span class="fragment"><strong>median</strong></span></li>
+</ul>
+<p>For reliability:</p>
+<ol type="1">
+<li class="fragment">make sure groups are large enough (<em>minimum of 40 per group</em>)</li>
+<li class="fragment">Perform <strong>bootstrap</strong> to estimate uncertainty around</li>
+</ol>
+</section>
+<section id="suggestions-on-tsi-comparison-bootstrap" class="slide level2 smaller">
+<h2>Suggestions on TSI comparison: bootstrap</h2>
+<aside class="notes">
+<p>read then mention what the equivalent would be for this scenario</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>Bootstrapping: statistical technique which <em>recycles</em> analysis data to estimate uncertainty around an estimator (e.g.&nbsp;median).</p>
+<ol type="1">
+<li class="fragment"><strong>Synthetic data</strong> sets of the same size are obtained by sampling with replacement from the data.</li>
+<li class="fragment">The <strong>estimator is computed</strong> on each synthetic data set.</li>
+<li class="fragment">The distribution of the estimators obtained on the syntetic data sets is summarised through 95% quantiles.</li>
+</ol>
+</section>
+<section id="results-on-sample-dataset" class="slide level2">
+<h2>Results on sample dataset:</h2>
+<aside class="notes">
+<p>Small sample sizes, but worth it to illustrate: 1. algorithm, and 2. uncertainty around medians.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p><img data-src="figures/bstrap_medianTSI_combined.png" style="width:60.0%;height:80.0%"></p>
+<div class="footer">
+<p>code <a href="https://github.com/abriz97/HIV-phyloTSI-workshops/blob/main/src/workshop_analyses.R">here</a></p>
+</div>
+</section>
+<section id="how-not-to-perform-grouping" class="slide level2">
+<h2>How <strong>NOT</strong> to perform grouping:</h2>
+<aside class="notes">
+<p>explain why: 1. of course, if we chose only individuals with HIV-phyloTSI &lt; 1, there is 0 probability of using … 2. If we have cross-sectional data, the only infections that are estimated to be from 5-10 years ago will be chronic infection. We are not able to observe recent infections from that period, implying we should not compare this different time periods. 3. more of a personal heuristic suggestion,</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>Groups should be made based on covariates different than HIV-phyloTSI inputs or outputs.</p>
+<p>Do NOT:</p>
+<ol type="1">
+<li class="fragment">Group by estimate of HIV-phyloTSI</li>
+<li class="fragment">Group by estimated date of infection</li>
+<li class="fragment">Again: chose groups of sizes &lt; 40</li>
+</ol>
+</section>
+<section id="other-analyses-on-population-level-outputs" class="slide level2">
+<h2>Other analyses on population level outputs:</h2>
+<p>Estimation of generation time distribution</p>
+<p>Enriching source-recipient pairs by providing time since infection.</p>
+<ul>
+<li class="fragment">Zambia <span class="citation" data-cites="hall_demographics_2021">(<a href="#/references" role="doc-biblioref" onclick="">Hall et al. 2021</a>)</span></li>
+<li class="fragment">Rakai: <span class="citation" data-cites="monod_growing_2023">(<a href="#/references" role="doc-biblioref" onclick="">Monod et al. 2023</a>)</span></li>
+</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>To account for individual level uncertainty, these studies not only make use of central estimates, but also the output prediction/uncertainty range</p>
+</div>
 </div>
 </div>
 </section>
-<section id="hptn-application" class="slide level2">
-<h2>HPTN application:</h2>
+<section id="dating-infection-events-in-rakai" class="slide level2">
+<h2>Dating infection events in Rakai</h2>
+<div class="footer">
+<p><span class="citation" data-cites="monod_growing_2023">Monod et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></p>
+</div>
+<aside class="notes">
+<p>Note that although here it seems we are performing analyses at the individual level, the analyses are then performed by age groups and gender by performing some fancy smoothing: we do not need each pair to be 100% sure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li class="fragment"><p>Infection pairs data from Rakai Community Cohort Study</p></li>
+<li class="fragment"><p>Transmission pairs detected with phyloscanner <span class="citation" data-cites="ratmann_quantifying_2020">Ratmann et al. (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></p></li>
+<li class="fragment"><p>Question: how did transmission pattern change over time?</p></li>
+<li class="fragment"><p>Need to date infections</p></li>
+</ul>
+</section>
+<section id="dating-infection-events-in-rakai-1" class="slide level2">
+<h2>Dating infection events in Rakai</h2>
+<div class="footer">
+<p><span class="citation" data-cites="monod_growing_2023">Monod et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></p>
+</div>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/dating_infection_pairs1.png" class="fragment" style="width:120.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/dating_infection_pairs2.png" class="fragment" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/dating_infection_pairs3.png" class="fragment" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figures/dating_infection_pairs4.png" class="fragment" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="footer">
+<p><span class="citation" data-cites="monod_growing_2023">Monod et al. (<a href="#/references" role="doc-biblioref" onclick="">2023</a>)</span></p>
+</div>
+</section>
+<section id="summing-up" class="slide level2 smaller">
+<h2>Summing up</h2>
+<aside class="notes">
+<p>Unanswered questions: generation intervals</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li class="fragment"><p>HIV-phyloTSI is a novel algorithm to estimate infection dates.</p></li>
+<li class="fragment"><p>alternative to serological assays which allows more control on definition of recency (Robust to subtype and ART usage)</p></li>
+<li class="fragment"><p>preliminary analyses and simulation studies demonstrate good performances at population level</p></li>
+<li class="fragment"><p>but may be inaccurate at the individual level: very large prediction intervals.</p></li>
+<li class="fragment"><p>Can help us explore answers to unanswered questions</p></li>
+</ul>
 </section></section>
 <section id="references" class="title-slide slide level1 smaller scrollable">
 <h1>References</h1>
@@ -1338,14 +1587,23 @@ Bhebhe, Lynnette, Sikhulile Moyo, Simani Gaseitsiwe, Molly Pretorius-Holme, Etie
 <div id="ref-bonsall_comprehensive_2018" class="csl-entry" role="listitem">
 Bonsall, David, Tanya Golubchik, Mariateresa De Cesare, Mohammed Limbada, Barry Kosloff, George MacIntyre-Cockett, Matthew Hall, et al. 2018. <span>“A Comprehensive Genomics Solution for <span>HIV</span> Surveillance and Clinical Monitoring in a Global Health Setting.”</span> Preprint. Genomics. <a href="https://doi.org/10.1101/397083">https://doi.org/10.1101/397083</a>.
 </div>
+<div id="ref-brookmeyer_estimation_1995" class="csl-entry" role="listitem">
+Brookmeyer, Ron, and Thomas C. Quinn. 1995. <span>“Estimation of <span>Current</span> <span>Human</span> <span>Immunodeficiency</span> <span>Virus</span> <span>Incidence</span> <span>Rates</span> from a <span>Cross</span>-<span>Sectional</span> <span>Survey</span> <span>Using</span> <span>Early</span> <span>Diagnostic</span> <span>Tests</span>.”</span> <em>American Journal of Epidemiology</em> 141 (2): 166–72. <a href="https://doi.org/10.1093/oxfordjournals.aje.a117404">https://doi.org/10.1093/oxfordjournals.aje.a117404</a>.
+</div>
 <div id="ref-carlisle_viral_2019" class="csl-entry" role="listitem">
 Carlisle, Louisa A, Teja Turk, Katharina Kusejko, Karin J Metzner, Christine Leemann, Corinne D Schenkel, Nadine Bachmann, et al. 2019. <span>“Viral <span>Diversity</span> <span>Based</span> on <span>Next</span>-<span>Generation</span> <span>Sequencing</span> of <span>HIV</span>-1 <span>Provides</span> <span>Precise</span> <span>Estimates</span> of <span>Infection</span> <span>Recency</span> and <span>Time</span> <span>Since</span> <span>Infection</span>.”</span> <em>The Journal of Infectious Diseases</em> 220 (2): 254–65. <a href="https://doi.org/10.1093/infdis/jiz094">https://doi.org/10.1093/infdis/jiz094</a>.
 </div>
 <div id="ref-centers_for_disease_control_and_prevention_cdc_revised_2014" class="csl-entry" role="listitem">
 Centers for Disease Control and Prevention (CDC). 2014. <span>“<a href="https://www.ncbi.nlm.nih.gov/pubmed/24717910">Revised Surveillance Case Definition for <span>HIV</span> Infection–<span>United</span> <span>States</span>, 2014</a>.”</span> <em>MMWR. Recommendations and Reports: Morbidity and Mortality Weekly Report. Recommendations and Reports</em> 63 (RR-03): 1–10.
 </div>
+<div id="ref-duong_detection_2012" class="csl-entry" role="listitem">
+Duong, Yen T., Maofeng Qiu, Anindya K. De, Keisha Jackson, Trudy Dobbs, Andrea A. Kim, John N. Nkengasong, and Bharat S. Parekh. 2012. <span>“Detection of <span>Recent</span> <span>HIV</span>-1 <span>Infection</span> <span>Using</span> a <span>New</span> <span>Limiting</span>-<span>Antigen</span> <span>Avidity</span> <span>Assay</span>: <span>Potential</span> for <span>HIV</span>-1 <span>Incidence</span> <span>Estimates</span> and <span>Avidity</span> <span>Maturation</span> <span>Studies</span>.”</span> Edited by Alan Landay. <em>PLoS ONE</em> 7 (3): e33328. <a href="https://doi.org/10.1371/journal.pone.0033328">https://doi.org/10.1371/journal.pone.0033328</a>.
+</div>
 <div id="ref-fiebig_dynamics_2003" class="csl-entry" role="listitem">
 Fiebig, Eberhard W, David J Wright, Bhupat D Rawal, Patricia E Garrett, Richard T Schumacher, Lorraine Peddada, Charles Heldebrant, et al. 2003. <span>“Dynamics of <span>HIV</span> Viremia and Antibody Seroconversion in Plasma Donors: Implications for Diagnosis and Staging of Primary <span>HIV</span> Infection.”</span> <em>AIDS</em> 17 (13): 1871–79. <a href="https://doi.org/10.1097/00002030-200309050-00005">https://doi.org/10.1097/00002030-200309050-00005</a>.
+</div>
+<div id="ref-freeman_prevalence_1980" class="csl-entry" role="listitem">
+Freeman, Jonathan, and George B. Hutchison. 1980. <span>“<span>PREVALENCE</span>, <span>INCIDENCE</span> <span>AND</span> <span>DURATION</span>.”</span> <em>American Journal of Epidemiology</em> 112 (5): 707–23. <a href="https://doi.org/10.1093/oxfordjournals.aje.a113043">https://doi.org/10.1093/oxfordjournals.aje.a113043</a>.
 </div>
 <div id="ref-gall_universal_2012" class="csl-entry" role="listitem">
 Gall, Astrid, Bridget Ferns, Clare Morris, Simon Watson, Matthew Cotten, Mark Robinson, Neil Berry, Deenan Pillay, and Paul Kellam. 2012. <span>“Universal <span>Amplification</span>, <span>Next</span>-<span>Generation</span> <span>Sequencing</span>, and <span>Assembly</span> of <span>HIV</span>-1 <span>Genomes</span>.”</span> <em>Journal of Clinical Microbiology</em> 50 (12): 3838–44. <a href="https://doi.org/10.1128/JCM.01516-12">https://doi.org/10.1128/JCM.01516-12</a>.
@@ -1353,8 +1611,20 @@ Gall, Astrid, Bridget Ferns, Clare Morris, Simon Watson, Matthew Cotten, Mark Ro
 <div id="ref-golubchik_hiv-phylotsi_2022" class="csl-entry" role="listitem">
 Golubchik, Tanya, Lucie Abeler-Dörner, Matthew Hall, Chris Wymant, David Bonsall, George Macintyre-Cockett, Laura Thomson, et al. 2022. <span>“<span>HIV</span>-<span class="nocase">phyloTSI</span>: <span>Subtype</span>-Independent Estimation of Time Since <span>HIV</span>-1 Infection for Cross-Sectional Measures of Population Incidence Using Deep Sequence Data.”</span> Preprint. HIV/AIDS. <a href="https://doi.org/10.1101/2022.05.15.22275117">https://doi.org/10.1101/2022.05.15.22275117</a>.
 </div>
+<div id="ref-hall_demographics_2021" class="csl-entry" role="listitem">
+Hall, Matthew, Tanya Golubchik, David Bonsall, Lucie Abeler-Dörner, Mohammed Limbada, Barry Kosloff, Ab Schaap, et al. 2021. <span>“Demographics of People Who Transmit <span>HIV</span>-1 in <span>Zambia</span>: A Molecular Epidemiology Analysis in the <span>HPTN</span>-071 <span>PopART</span> Study.”</span> Preprint. HIV/AIDS. <a href="https://doi.org/10.1101/2021.10.04.21263560">https://doi.org/10.1101/2021.10.04.21263560</a>.
+</div>
+<div id="ref-janssen_new_1998" class="csl-entry" role="listitem">
+Janssen, Robert S. 1998. <span>“New <span>Testing</span> <span>Strategy</span> to <span>Detect</span> <span>Early</span> <span>HIV</span>-1 <span>Infection</span> for <span>Use</span> in <span>Incidence</span> <span>Estimates</span> and for <span>Clinical</span> and <span>Prevention</span> <span>Purposes</span>.”</span> <em>JAMA</em> 280 (1): 42. <a href="https://doi.org/10.1001/jama.280.1.42">https://doi.org/10.1001/jama.280.1.42</a>.
+</div>
 <div id="ref-katoh_mafft_2002" class="csl-entry" role="listitem">
 Katoh, K. 2002. <span>“<span>MAFFT</span>: A Novel Method for Rapid Multiple Sequence Alignment Based on Fast <span>Fourier</span> Transform.”</span> <em>Nucleic Acids Research</em> 30 (14): 3059–66. <a href="https://doi.org/10.1093/nar/gkf436">https://doi.org/10.1093/nar/gkf436</a>.
+</div>
+<div id="ref-laeyendecker_development_2013" class="csl-entry" role="listitem">
+Laeyendecker, Oliver, Michal Kulich, Deborah Donnell, Arnošt Komárek, Marek Omelka, Caroline E. Mullis, Greg Szekeres, et al. 2013. <span>“Development of <span>Methods</span> for <span>Cross</span>-<span>Sectional</span> <span>HIV</span> <span>Incidence</span> <span>Estimation</span> in a <span>Large</span>, <span>Community</span> <span>Randomized</span> <span>Trial</span>.”</span> Edited by Dimitrios Paraskevis. <em>PLoS ONE</em> 8 (11): e78818. <a href="https://doi.org/10.1371/journal.pone.0078818">https://doi.org/10.1371/journal.pone.0078818</a>.
+</div>
+<div id="ref-monod_growing_2023" class="csl-entry" role="listitem">
+Monod, Mélodie, Andrea Brizzi, Ronald M Galiwango, Robert Ssekubugu, Yu Chen, Xiaoyue Xi, Edward Nelson Kankaka, et al. 2023. <span>“Growing Gender Disparity in <span>HIV</span> Infection in <span>Africa</span>: Sources and Policy Implications.”</span> Preprint. Epidemiology. <a href="https://doi.org/10.1101/2023.03.16.23287351">https://doi.org/10.1101/2023.03.16.23287351</a>.
 </div>
 <div id="ref-moyo_identifying_2015" class="csl-entry" role="listitem">
 Moyo, Sikhulile, Eduan Wilkinson, Vladimir Novitsky, Alain Vandormael, Simani Gaseitsiwe, Max Essex, Susan Engelbrecht, and Tulio De Oliveira. 2015. <span>“Identifying <span>Recent</span> <span>HIV</span> <span>Infections</span>: <span>From</span> <span>Serological</span> <span>Assays</span> to <span>Genomics</span>.”</span> <em>Viruses</em> 7 (10): 5508–24. <a href="https://doi.org/10.3390/v7102887">https://doi.org/10.3390/v7102887</a>.
@@ -1362,8 +1632,14 @@ Moyo, Sikhulile, Eduan Wilkinson, Vladimir Novitsky, Alain Vandormael, Simani Ga
 <div id="ref-nguyen_iq-tree_2015" class="csl-entry" role="listitem">
 Nguyen, Lam-Tung, Heiko A. Schmidt, Arndt Von Haeseler, and Bui Quang Minh. 2015. <span>“<span>IQ</span>-<span>TREE</span>: <span>A</span> <span>Fast</span> and <span>Effective</span> <span>Stochastic</span> <span>Algorithm</span> for <span>Estimating</span> <span>Maximum</span>-<span>Likelihood</span> <span>Phylogenies</span>.”</span> <em>Molecular Biology and Evolution</em> 32 (1): 268–74. <a href="https://doi.org/10.1093/molbev/msu300">https://doi.org/10.1093/molbev/msu300</a>.
 </div>
+<div id="ref-parekh_determination_2011" class="csl-entry" role="listitem">
+Parekh, Bharat S., Debra L. Hanson, John Hargrove, Bernard Branson, Timothy Green, Trudy Dobbs, Niel Constantine, Julie Overbaugh, and J. Steven McDougal. 2011. <span>“Determination of <span>Mean</span> <span>Recency</span> <span>Period</span> for <span>Estimation</span> of <span>HIV</span> <span>Type</span> 1 <span>Incidence</span> with the <span>BED</span>-<span>Capture</span> <span>EIA</span> in <span>Persons</span> <span>Infected</span> with <span>Diverse</span> <span>Subtypes</span>.”</span> <em>AIDS Research and Human Retroviruses</em> 27 (3): 265–73. <a href="https://doi.org/10.1089/aid.2010.0159">https://doi.org/10.1089/aid.2010.0159</a>.
+</div>
 <div id="ref-ragonnet-cronin_human_2022" class="csl-entry" role="listitem">
 Ragonnet-Cronin, Manon, Tanya Golubchik, Sikhulile Moyo, Christophe Fraser, Max Essex, Vlad Novitsky, and Erik Volz. 2022. <span>“Human <span>Immunodeficiency</span> <span>Virus</span> (<span>HIV</span>) <span>Genetic</span> <span>Diversity</span> <span>Informs</span> <span>Stage</span> of <span>HIV</span>-1 <span>Infection</span> <span>Among</span> <span>Patients</span> <span>Receiving</span> <span>Antiretroviral</span> <span>Therapy</span> in <span>Botswana</span>.”</span> <em>The Journal of Infectious Diseases</em> 225 (8): 1330–38. <a href="https://doi.org/10.1093/infdis/jiab293">https://doi.org/10.1093/infdis/jiab293</a>.
+</div>
+<div id="ref-ratmann_quantifying_2020" class="csl-entry" role="listitem">
+Ratmann, Oliver, Joseph Kagaayi, Matthew Hall, Tanya Golubchick, Godfrey Kigozi, Xiaoyue Xi, Chris Wymant, et al. 2020. <span>“Quantifying <span>HIV</span> Transmission Flow Between High-Prevalence Hotspots and Surrounding Communities: A Population-Based Study in <span>Rakai</span>, <span>Uganda</span>.”</span> <em>The Lancet HIV</em> 7 (3): e173–83. <a href="https://doi.org/10.1016/S2352-3018(19)30378-9">https://doi.org/10.1016/S2352-3018(19)30378-9</a>.
 </div>
 <div id="ref-wymant_easy_2018" class="csl-entry" role="listitem">
 Wymant, Chris, François Blanquart, Tanya Golubchik, Astrid Gall, Margreet Bakker, Daniela Bezemer, Nicholas J Croucher, et al. 2018. <span>“Easy and Accurate Reconstruction of Whole <span>HIV</span> Genomes from Short-Read Sequence Data with Shiver.”</span> <em>Virus Evolution</em> 4 (1): vey007. <a href="https://doi.org/10.1093/ve/vey007">https://doi.org/10.1093/ve/vey007</a>.
