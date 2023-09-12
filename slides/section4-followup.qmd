@@ -32,7 +32,7 @@ estimating the proportion of infection that are recent.
 Following @freeman_prevalence_1980 and @brookmeyer_estimation_1995, if incidence is constant, it can be estimated as:
 
 $$
-  I = \frac{\text{# recent}}{\text{# diagnoses} \times MDRI }
+  I = \frac{\text{# recent}}{\text{# uninfected} \times MDRI }
 $$
 :::
 
@@ -132,7 +132,7 @@ uncertainty around an estimator (e.g. median).
 Small sample sizes, but worth it to illustrate: 1. algorithm, and 2. uncertainty around medians.
 :::
 
-![](figures/bstrap_medianTSI_combined.png){height=80% width=60%}
+![](figures/bstrap_medianTSI_combined.png){height=80% width=60% fig-align="center"}
 
 ::: {.footer}
 code [here](https://github.com/abriz97/HIV-phyloTSI-workshops/blob/main/src/workshop_analyses.R)
@@ -156,7 +156,7 @@ Do NOT:
 2. Group by estimated date of infection 
 3. Again: chose groups of sizes < 40
 
-## Other analyses on population level outputs:
+## Other analyses on population level outputs: {.smaller}
 
 Estimation of generation time distribution
 

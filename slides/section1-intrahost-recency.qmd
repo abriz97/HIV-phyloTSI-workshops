@@ -1,39 +1,29 @@
 # Intrahost diversity and recency of infections { background-color="`r clrs[1]`"}
 
 :::{ .notes}
-40 minutes, this should be about background and things mentioned by Tanya
-Introduce power of 
+40 minutes
+In the first section, we ll go through some background materials.
+specifically, we ll explain what is recency of infection, and then explain
+how within-individual HIV diversity can give us clue on how long ago an individual
+was infected.
+This section will cover some of the materials that Tanya presented aleady, but 
+I tried to include more information on prior alternative methods, so it should 
+have a slightly different spin.
 :::
-
-<!--
-## Recency of infection { background-color="`r clrs_lt[1]`"}
-
-* *What?*   
-    Determining whether a person testing HIV positive has been infected recently or not.
-
-. . .
-
-* *Why ?* 
-    + incidence estimation
-    + study delays to diagnosis in subpopulations.
-  
-. . .
-
-* *How ?*
-  + longitudinal cohorts as long standard (expensive, time consuming)
-
-. . .
--->
 
 ## Why do we care about recency? { background-color="`r clrs_lt[1]`"}
 
 ::: {.notes}
+but before even going through the definitions, we may want to make clear why
+we care about recency of infection, what kind of questions does it allow us to 
+answer.
+
 + delays to diagnosis in sub-populations for 2nd one too
 :::
 
 + incidence estimation
 
-+ identifying sub-populations sufferinng from recent infections are happening. 
++ identifying sub-populations suffering from recent infections are happening. 
 
 + determining generation intervals.
 
@@ -295,7 +285,7 @@ model bias was close to 0 for all subtypes included in the dataset.
 :::: 
 
 
-## HIV-phyloTSI performances: robustness to ART (? {background-color="`r clrs_lt[1]`" .smaller}
+## HIV-phyloTSI performances: robustness to ART (?) {background-color="`r clrs_lt[1]`" .smaller}
 
 
 :::: {.columns }

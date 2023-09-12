@@ -34,7 +34,7 @@ Main steps:
 - Analysing phylogenies   
 
 
-## Next Generation Sequencing { background-color="`r clrs_lt[2]`"}
+## Next Generation Sequencing { background-color="`r clrs_lt[2]`" .smaller}
 
 ::: {.notes}
 NGS is the fundamental technology to capture and measure within-host diversity.
@@ -47,9 +47,15 @@ opens new doors.
 
 - simultaneous sequencing of multiple viral particles to capture within-host diversity
 - PANGEA protocols: I [-@gall_universal_2012] and II [-@bonsall_comprehensive_2018]
-- TSI pipeline starts with the outputs produced by `shiver` [-@wymant_easy_2018]: `*.bam`, `*.ref.fasta`
+- TSI pipeline starts with the `*.bam`, `*_ref.fasta` produced by `shiver`
+
 
 ![](figures/shiver.png){fig-align=center}
+
+::: {.footer}
+[@wymant_easy_2018]
+:::
+
 
 ## Grouping & multiple sequence alignment { background-color="`r clrs_lt[2]`"}
 
@@ -108,8 +114,10 @@ the input the HIV-phyloTSI algorithm later on.
 FIGURE: 5 small treefiles with a } bracket pointing to csv file
 :::
 
-- `phyloscanner` (TOCITE) summarizes each tree through summary statistics:
+- `phyloscanner` @wymant_phyloscanner_2017 summarizes each tree through summary statistics:
 - `patStats.csv`: contains LRTT, number of tips, etc...
+
+![](figures/phyloscanner_trees_genome.png){fig-align="center" width=80%}
 
 
 ## Minor Allele Frequencies { background-color="`r clrs_lt[2]`"}
@@ -227,8 +235,26 @@ using and how it was trained.
 random forest algorithm: little intuition
 Good thing is we do not need to understand the little details as long as we use 
 the code provided.
+
+as input, we have obtained genetic difference and divergence. In the previous 
+section, we have seen how these seem to be differently informative depending on 
+position on the genome.
+
+the way time since infection will affect these will be complex, and so we want 
+models that allow to capture such complexity, but which are still interpretable.
+
+one popular machine learning model for this is random forest. In summary, the 
+model produces a collection of basic classifiers and then takes a "vote" 
+from the predictions obtained from each of these.
+
+mention practical, how we don't need to understand ML to get the predictons and 
+then mention we will visualise these inputs and outputs.
 :::
 
-- **ML algorithm**, in particular Random Forest.
+- **Input**: divergence measures which are differently informative depending on position on the genome. 
+  
+- **ML algorithm** to capture complexity:
+  - Random Forest: averages over many simple decision trees
+  - is interpretable: we can understand which variables are important.
 
-TODOOOOOOOOOOOOOOOOOOOOOOOOooooo
+

@@ -14,9 +14,8 @@ editor:
 
 -   divide in group of 4, each goup with a machine running Linux or
     MacOS
--   introduction of sample dataset
 -   installing dependencies
--   running hiv-phyloTSI
+-   running HIV-phyloTSI on 20 sequences .
 -   if there is time, visualising outputs in R. 
 
 ## Preliminary Tools {background-color="`r clrs_lt[3]`"}

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>section1-intrahost-recency</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="section1-intrahost-recency_files/libs/clipboard/clipboard.min.js"></script>
+<script src="section1-intrahost-recency_files/libs/quarto-html/quarto.js"></script>
+<script src="section1-intrahost-recency_files/libs/quarto-html/popper.min.js"></script>
+<script src="section1-intrahost-recency_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="section1-intrahost-recency_files/libs/quarto-html/anchor.min.js"></script>
+<link href="section1-intrahost-recency_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="section1-intrahost-recency_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="section1-intrahost-recency_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="section1-intrahost-recency_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="section1-intrahost-recency_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="intrahost-diversity-and-recency-of-infections" class="level1" data-background-color="`r clrs[1]`">
+<h1 data-background-color="`r clrs[1]`">Intrahost diversity and recency of infections</h1>
+<div class="notes">
+<p>40 minutes In the first section, we ll go through some background materials. specifically, we ll explain what is recency of infection, and then explain how within-individual HIV diversity can give us clue on how long ago an individual was infected. This section will cover some of the materials that Tanya presented aleady, but I tried to include more information on prior alternative methods, so it should have a slightly different spin.</p>
+</div>
+<section id="why-do-we-care-about-recency" class="level2" data-background-color="`r clrs_lt[1]`">
+<h2 data-background-color="`r clrs_lt[1]`" class="anchored" data-anchor-id="why-do-we-care-about-recency">Why do we care about recency?</h2>
+<div class="notes">
+<p>but before even going through the definitions, we may want to make clear why we care about recency of infection, what kind of questions does it allow us to answer.</p>
+<ul>
+<li>delays to diagnosis in sub-populations for 2nd one too</li>
+</ul>
+</div>
+<ul>
+<li><p>incidence estimation</p></li>
+<li><p>identifying sub-populations suffering from recent infections are happening.</p></li>
+<li><p>determining generation intervals.</p></li>
+</ul>
+<p>. . .</p>
+<p>but getting data is hard:</p>
+<ul>
+<li><p>longitudinal cohorts as gold standard</p></li>
+<li><p>alternatives which are discussed in this section</p></li>
+</ul>
+</section>
+<section id="what-is-recency-natural-history-of-hiv" class="level2 smaller" data-background-color="`r clrs_lt[1]`" data-incremental="false">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-incremental="false" data-anchor-id="what-is-recency-natural-history-of-hiv">What is recency? Natural history of HIV</h2>
+<div class="notes">
+<ul>
+<li>mention different stage classifications:Fiebing? …</li>
+<li>describe natural history of HIV: complex interplay between VL and CD4 counts</li>
+<li>mention “imbalance”: a very short dynamic period preceeds a long and static one. A very high VL may be indicative of a recent infection. However, a “medium” value does not help us discriminate/distinguish among other dates.</li>
+</ul>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIV_natural_history.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p>. . .</p>
+<p>dynamics define infection stages: <span class="citation" data-cites="centers_for_disease_control_and_prevention_cdc_revised_2014">[ CDC: -@centers_for_disease_control_and_prevention_cdc_revised_2014]</span> ; <span class="citation" data-cites="fiebig_dynamics_2003">[ Fiebig et al. -@fiebig_dynamics_2003]</span></p>
+<div class="footer">
+<p>source: <a href="https://www.wikidoc.org/index.php/HIV_AIDS_natural_history,_complications,_and_prognosis">wikidoc</a></p>
+</div>
+</section>
+<section id="lab-assays-to-identify-infection-stages" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="lab-assays-to-identify-infection-stages">Lab assays to identify infection stages</h2>
+<div class="notes">
+<ul>
+<li>“lab” assay are based on the differences in internal “stages” of infection and immune response. For example a person may be suspected to be recent if first-level response antigens are present, but not other antigens more specific to HIV-1</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="notes">
+<p>test by seeing whether blood react when exposed to specific antigens. 1. is based antigen test based on increase in antibodies over time 2. quality of antibody respons 3. proportion of HIV-specific IgG to total IgG.</p>
+</div>
+<p>Based on the quality and type of immune response.</p>
+<ul>
+<li><strong>Less sensitive Enzyme Immunoassays</strong>, antigen test <span class="citation" data-cites="janssen_new_1998">[-@janssen_new_1998]</span></li>
+<li><strong>Lag-Avidity</strong> <span class="citation" data-cites="duong_detection_2012">[-@duong_detection_2012]</span></li>
+<li><strong>Bed-CEIA</strong> <span class="citation" data-cites="parekh_determination_2011">[-@parekh_determination_2011]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img src="figures/HIV_serology.jpg" style="width:100.0%;height:100.0%"></p>
+</div><div class="footer">
+<p>source: <a href="https://depts.washington.edu/uwviro/hiv-diagnostic-and-molecular-testing/">UW medicine</a></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="section" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="section"></h2>
+<p>This is great, but specificity and sensitivity are hard to control:</p>
+<ul>
+<li>individual level variation, confounding subtypes, ART status…</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIV_subtypes.jpg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="footer">
+<p><span class="citation" data-cites="laeyendecker_development_2013">@laeyendecker_development_2013</span></p>
+</div>
+<div class="notes">
+<p>Being affected by ART makes it harder to trust results in a world where ART is more available, subtype makes it harder to generalise by location</p>
+</div>
+</section>
+<section id="an-alternative-unit-of-time-genetic-diversity" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="an-alternative-unit-of-time-genetic-diversity">An alternative unit of time: genetic diversity</h2>
+<div class="notes">
+<ul>
+<li>these assay generally target only one of the many facets of HIV response. I focused on antibody response and VL, but evolution dynamics bring up another source of information.</li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img src="figures/moyo_identifying_figure1.png" style="width:100.0%;height:100.0%"></p>
+<div class="footer">
+<p><span class="citation" data-cites="moyo_identifying_2015">@moyo_identifying_2015</span> reviews molecular &amp; serological assays.</p>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="notes">
+<p>give detail on Ragonnet, still need a training set with recent and non-recent. + use of demographics.</p>
+</div>
+<ul>
+<li><p>HIV infection is a multi-faceted phenomenon: immune response is just one facet.</p></li>
+<li><p>HIV-1 diversity grows as a function on time since infection.</p></li>
+<li><p>NGS is more informative than Sanger (<span class="citation" data-cites="carlisle_viral_2019">@carlisle_viral_2019</span>)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="case-study-recency-in-botswana" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="case-study-recency-in-botswana">Case study: recency in Botswana</h2>
+<div class="notes">
+<p>before moving to HIV-phyloTSI, I want to go through another application of NGS data in the context of estimating time since infection in an African setting. In particular, highlighting the strength and limitations of such studies will help us: 1. put in context the HIV-phyloTSI algorith and 2. understand its advantages and drawbacks</p>
+</div>
+<p><span class="citation" data-cites="ragonnet-cronin_human_2022">@ragonnet-cronin_human_2022</span> developed recency classifier</p>
+<ul>
+<li><strong>end goal</strong>: characterizing undiagnosed cases in Botswana (<span class="citation" data-cites="bhebhe_epidemiological_2022">@bhebhe_epidemiological_2022</span>)</li>
+<li><strong>data</strong>: demographic data, some testing data and individual level NGS</li>
+<li><strong>how</strong>: train ML model on known recent and known chronic infections, and use it to classify unknown.</li>
+</ul>
+<p>. . .</p>
+<p>comments on model:</p>
+<ol type="1">
+<li>still required cohort study, and <em>not directly generalisable</em> to other contexts.</li>
+<li><em>simple measures of diversity</em>: entropy and mean pairwise distance</li>
+<li>these alone are <em>not enough</em> to provide good classification</li>
+</ol>
+</section>
+<section id="case-study-recency-in-botswana-1" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="case-study-recency-in-botswana-1">Case study: recency in Botswana</h2>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/ragonnet2022_fig2b.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+<div class="footer">
+<p><span class="citation" data-cites="ragonnet-cronin_human_2022">@ragonnet-cronin_human_2022</span></p>
+</div>
+</section>
+<section id="hiv-phylo-tsi" class="level2" data-background-color="`r clrs_lt[1]`">
+<h2 data-background-color="`r clrs_lt[1]`" class="anchored" data-anchor-id="hiv-phylo-tsi">HIV-phylo TSI</h2>
+<div class="notes">
+<p>Addresses drawbacks of previous methods.</p>
+</div>
+<p><span class="citation" data-cites="golubchik_hiv-phylotsi_2022">@golubchik_hiv-phylotsi_2022</span> tackles weaknesses of previous approach:</p>
+<ol type="1">
+<li><strong>Pre-trained</strong>: no need for expensive training data.</li>
+<li>Captures more complex <strong>measures of divergence</strong>.</li>
+<li>Comparatively <strong>low false recency rate</strong> using exclusively NGS data.</li>
+</ol>
+</section>
+<section id="hiv-phylo-tsi-training-data" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="hiv-phylo-tsi-training-data">HIV-phylo TSI: training data</h2>
+<p>sequences from PANGEA and BEEHIVE with known infection range.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIVphyloTSI_trainingdata.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="hiv-phylo-tsi-intrahost-diversity" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="hiv-phylo-tsi-intrahost-diversity">HIV-phylo TSI: intrahost diversity</h2>
+<p>choice of predictors based on viral diversification following infection.</p>
+<ol type="1">
+<li>“Accumulated” mutations on codons.</li>
+<li>“Depth” of host-specific subtree in phylogeny. (LRTT)</li>
+</ol>
+<div class="r-stack">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIVphyloTSI_mafs.png" class="fragment img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/phyloscanner_trees_genome.png" class="fragment img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="but-why-these-measures-of-intrahost-diversity" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="but-why-these-measures-of-intrahost-diversity">But why these measures of intrahost diversity?</h2>
+<div class="notes">
+<p>250bp rolling mean: - regions along the genome where genetic divergence increases significantly over time - LRTT as “distance from founder” virus - MAF to measure accumulation of mutations</p>
+</div>
+<p><img src="figures/HIVphyloTSI_diversity_along_genome.png" class="img-fluid" style="width:100.0%"></p>
+</section>
+<section id="hiv-phylo-tsi-model" class="level2" data-background-color="`r clrs_lt[1]`">
+<h2 data-background-color="`r clrs_lt[1]`" class="anchored" data-anchor-id="hiv-phylo-tsi-model">HIV-phylo TSI model</h2>
+<p>different signal in different part of the genome. How to combine predictors?</p>
+<ul>
+<li>take average over gene</li>
+<li>let the model pick up the informative covariates.</li>
+</ul>
+<p>. . .</p>
+<ul>
+<li><p>Best performing set of features chosen through LOOCV</p></li>
+<li><p>Regressor performs well as a classifier too, but FRR (~10%)</p></li>
+</ul>
+</section>
+<section id="hiv-phylo-tsi-performances-bias" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="hiv-phylo-tsi-performances-bias">HIV-phylo TSI performances: bias</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>bias is low in infections &lt; 9 years.</li>
+<li>range of individual-level errors can be quite wide.</li>
+</ul>
+<p>For applications:</p>
+<ul>
+<li>estimates are not precise at the individuals level BUT</li>
+<li>there is signal in medians taken among subpopulation.</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIVphyloTSI_bias.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hiv-phylotsi-performances-robustness-to-subtype" class="level2" data-background-color="`r clrs_lt[1]`">
+<h2 data-background-color="`r clrs_lt[1]`" class="anchored" data-anchor-id="hiv-phylotsi-performances-robustness-to-subtype">HIV-phyloTSI performances: robustness to subtype</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p>model bias was close to 0 for all subtypes included in the dataset.</p>
+</div><div class="column" style="width:65%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIVphyloTSI_subtype.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hiv-phylotsi-performances-robustness-to-art" class="level2 smaller" data-background-color="`r clrs_lt[1]`">
+<h2 class="smaller anchored" data-background-color="`r clrs_lt[1]`" data-anchor-id="hiv-phylotsi-performances-robustness-to-art">HIV-phyloTSI performances: robustness to ART (?)</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p>Some individuals in the training data reported prior ART use.</p>
+<ul>
+<li><p>followed pattern</p></li>
+<li><p>BUT: small sample size</p></li>
+<li><p>AND: no predictions for suppressed individuals.</p></li>
+</ul>
+</div><div class="column" style="width:65%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/HIVphyloTSI_reportedart.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
