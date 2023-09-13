@@ -78,9 +78,9 @@ in the way we specify the paths to the input data.
 # Run HIV-phyloTSI on input data.
 python $DIR_PROGRAM/HIV-phyloTSI.py \
     -d $DIR_PROGRAM/Model \
-    -p $DIR_WORKSHOP/HIV-phyloTSI-workshops/input/ptyr1_patStats.csv \ 
-    -m $DIR_WORKSHOP/HIV-phyloTSI-workshops/input/phsc_input_samples_maf.csv \ 
-    -o $DIR_WORKSHOP/HIV-phyloTSI-workshops/output/ptyr1_tsi_workshop.csv
+    -p $DIR_WORKSHOP/input/ptyr1_patStats.csv \ 
+    -m $DIR_WORKSHOP/input/phsc_input_samples_maf.csv \ 
+    -o $DIR_WORKSHOP/output/ptyr1_tsi_workshop.csv
   
 # print header of output to make sure it exists:
 head $DIR_WORKSHOP/HIV-phyloTSI-workshops/output/ptyr1_tsi_workshop.csv
